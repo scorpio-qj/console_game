@@ -1,11 +1,18 @@
 package org.nico.ratel.landlords.server;
 
+import org.nico.ratel.landlords.enums.ServerEventCode;
+import org.nico.ratel.landlords.server.event.ServerEventListener;
 import org.nico.ratel.landlords.server.proxy.ProtobufProxy;
 import org.nico.ratel.landlords.server.proxy.WebsocketProxy;
 
 public class SimpleServer {
 
 	public static void main(String[] args) throws InterruptedException {
+
+		ServerEventCode code= ServerEventCode.valueOf("CODE_CLIENT_EXIT");
+		System.out.println(code);
+
+		/*
 		if (args != null && args.length > 1) {
 			if (args[0].equalsIgnoreCase("-p") || args[0].equalsIgnoreCase("-port")) {
 				ServerContains.port = Integer.parseInt(args[1]);
@@ -19,6 +26,8 @@ public class SimpleServer {
 			}
 		}).start();
 		new WebsocketProxy().start(ServerContains.port + 1);
+		*/
+
 
 	}
 }
