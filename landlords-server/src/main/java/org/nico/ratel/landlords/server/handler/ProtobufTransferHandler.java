@@ -29,18 +29,18 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-		Channel ch = ctx.channel();
+		Channel channel = ctx.channel();
 
 		//init client info
-		ClientSide clientSide = new ClientSide(getId(ctx.channel()), ClientStatus.TO_CHOOSE, ch);
+		ClientSide clientSide = new ClientSide(getId(ctx.channel()), ClientStatus.TO_CHOOSE, channel);
 		clientSide.setNickname(String.valueOf(clientSide.getId()));
 		clientSide.setRole(ClientRole.PLAYER);
 
 		ServerContains.CLIENT_SIDE_MAP.put(clientSide.getId(), clientSide);
 		SimplePrinter.serverLog("Has client connect to the server: " + clientSide.getId());
 
-		ChannelUtils.pushToClient(ch, ClientEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
-		ChannelUtils.pushToClient(ch, ClientEventCode.CODE_CLIENT_NICKNAME_SET, null);
+		ChannelUtils.pushToClient(channel, ClientEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
+		ChannelUtils.pushToClient(channel, ClientEventCode.CODE_CLIENT_NICKNAME_SET, null);
 	}
 
 
