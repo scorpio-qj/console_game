@@ -9,18 +9,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
-import io.netty.handler.codec.protobuf.ProtobufDecoder;
-import io.netty.handler.codec.protobuf.ProtobufEncoder;
-import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
-import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-import org.nico.ratel.landlords.client.handler.SecondProtobufCodec;
-import org.nico.ratel.landlords.client.handler.ProtobufTransferHandler;
 import org.nico.ratel.landlords.client.handler.WebsocketTransferHandler;
-import org.nico.ratel.landlords.entity.ClientTransferData;
 import org.nico.ratel.landlords.print.SimplePrinter;
 
 import java.net.URI;

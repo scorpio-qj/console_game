@@ -1,10 +1,10 @@
 package org.nico.ratel.landlords.client.handler;
 
 import org.nico.noson.Noson;
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.client.entity.User;
 import org.nico.ratel.landlords.client.event.ClientEventListener;
-import org.nico.ratel.landlords.entity.ClientTransferData.ClientTransferDataProtoc;
+import org.nico.ratel.landlords.proto.ClientTransferData.ClientTransferDataProtoc;
 import org.nico.ratel.landlords.enums.ClientEventCode;
 import org.nico.ratel.landlords.enums.ServerEventCode;
 import org.nico.ratel.landlords.print.SimplePrinter;

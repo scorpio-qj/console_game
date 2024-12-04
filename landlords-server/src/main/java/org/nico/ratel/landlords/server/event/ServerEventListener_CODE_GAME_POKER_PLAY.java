@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.nico.noson.Noson;
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.entity.ClientSide;
 import org.nico.ratel.landlords.entity.Poker;
 import org.nico.ratel.landlords.entity.PokerSell;
 import org.nico.ratel.landlords.entity.Room;
 import org.nico.ratel.landlords.enums.*;
-import org.nico.ratel.landlords.features.Features;
+import org.nico.ratel.landlords.helper.FeaturesHelper;
 import org.nico.ratel.landlords.helper.MapHelper;
 import org.nico.ratel.landlords.helper.PokerHelper;
 import org.nico.ratel.landlords.print.SimplePrinter;
@@ -171,7 +171,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 
 		boolean supportReady = true;
 		for (ClientSide client : room.getClientSideList()) {
-			if (client.getRole() == ClientRole.ROBOT || ! Features.supported(client.getVersion(), Features.READY)) {
+			if (client.getRole() == ClientRole.ROBOT || ! FeaturesHelper.supported(client.getVersion(), FeaturesHelper.READY)) {
 				supportReady = false;
 				break;
 			}

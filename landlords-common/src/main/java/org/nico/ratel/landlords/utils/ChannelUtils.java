@@ -1,8 +1,8 @@
-package org.nico.ratel.landlords.channel;
+package org.nico.ratel.landlords.utils;
 
-import org.nico.ratel.landlords.entity.ClientTransferData;
+import org.nico.ratel.landlords.proto.ClientTransferData;
 import org.nico.ratel.landlords.entity.Msg;
-import org.nico.ratel.landlords.entity.ServerTransferData;
+import org.nico.ratel.landlords.proto.ServerTransferData;
 import org.nico.ratel.landlords.enums.ClientEventCode;
 import org.nico.ratel.landlords.enums.ServerEventCode;
 import org.nico.ratel.landlords.utils.JsonUtils;

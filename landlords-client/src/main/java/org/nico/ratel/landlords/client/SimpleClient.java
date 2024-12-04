@@ -13,7 +13,7 @@ import org.nico.noson.util.string.StringUtils;
 import org.nico.ratel.landlords.client.entity.User;
 import org.nico.ratel.landlords.client.proxy.ProtobufProxy;
 import org.nico.ratel.landlords.client.proxy.WebsocketProxy;
-import org.nico.ratel.landlords.features.Features;
+import org.nico.ratel.landlords.helper.FeaturesHelper;
 import org.nico.ratel.landlords.helper.I18nHelper;
 import org.nico.ratel.landlords.print.SimplePrinter;
 import org.nico.ratel.landlords.print.SimpleWriter;
@@ -23,7 +23,7 @@ public class SimpleClient {
 
 	public static int id = -1;
 
-	public final static String VERSION = Features.VERSION_1_3_0;
+	public final static String VERSION = FeaturesHelper.VERSION_1_3_0;
 
 	public static String serverAddress;
 

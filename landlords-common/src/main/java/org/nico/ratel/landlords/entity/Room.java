@@ -5,11 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
-import java.util.concurrent.locks.ReentrantLock;
 
-import org.nico.noson.annotations.JsonIgnore;
 import org.nico.ratel.landlords.enums.RoomStatus;
-import org.nico.ratel.landlords.enums.RoomType;
+import org.nico.ratel.landlords.enums.BattleType;
 
 public class Room {
 
@@ -19,7 +17,7 @@ public class Room {
 
 	private RoomStatus status;
 
-	private RoomType type;
+	private BattleType type;
 
 	private Map<Integer, ClientSide> clientSideMap;
 
@@ -105,11 +103,11 @@ public class Room {
 		this.difficultyCoefficient = difficultyCoefficient;
 	}
 
-	public final RoomType getType() {
+	public final BattleType getType() {
 		return type;
 	}
 
-	public final void setType(RoomType type) {
+	public final void setType(BattleType type) {
 		this.type = type;
 	}
 

@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.nico.noson.Noson;
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.entity.ClientSide;
 import org.nico.ratel.landlords.entity.Room;
 import org.nico.ratel.landlords.enums.ClientEventCode;

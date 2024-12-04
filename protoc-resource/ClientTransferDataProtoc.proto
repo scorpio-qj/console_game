@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package org.nico.ratel.landlords.entity;
 
-option java_package = "org.nico.ratel.landlords.entity";
+option java_package = "org.nico.ratel.landlords.proto";
 option java_outer_classname = "ClientTransferData";
 
 message ClientTransferDataProtoc{

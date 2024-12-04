@@ -1,8 +1,8 @@
 package org.nico.ratel.landlords.server.handler;
 
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.entity.ServerTransferData.ServerTransferDataProtoc;
+import org.nico.ratel.landlords.proto.ServerTransferData.ServerTransferDataProtoc;
 import org.nico.ratel.landlords.enums.ClientEventCode;
 import org.nico.ratel.landlords.enums.ClientRole;
 import org.nico.ratel.landlords.enums.ClientStatus;

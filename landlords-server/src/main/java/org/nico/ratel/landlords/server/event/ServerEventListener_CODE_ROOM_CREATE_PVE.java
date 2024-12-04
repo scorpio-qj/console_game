@@ -1,6 +1,6 @@
 package org.nico.ratel.landlords.server.event;
 
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.entity.ClientSide;
 import org.nico.ratel.landlords.entity.Room;
 import org.nico.ratel.landlords.enums.*;
@@ -19,7 +19,7 @@ public class ServerEventListener_CODE_ROOM_CREATE_PVE implements ServerEventList
 		}
 
 		Room room = new Room(ServerContains.getServerId());
-		room.setType(RoomType.PVE);
+		room.setType(BattleType.PVE);
 		room.setStatus(RoomStatus.BLANK);
 		room.setRoomOwner(clientSide.getNickname());
 		room.getClientSideMap().put(clientSide.getId(), clientSide);

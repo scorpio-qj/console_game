@@ -1,8 +1,8 @@
-package org.nico.ratel.landlords.features;
+package org.nico.ratel.landlords.helper;
 
 import java.util.*;
 
-public class Features {
+public class FeaturesHelper {
 
     public final static String VERSION_1_3_0 = "v1.3.0";
     public final static String READY = "READY";

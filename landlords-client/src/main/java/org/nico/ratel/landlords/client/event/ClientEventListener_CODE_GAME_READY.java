@@ -1,7 +1,7 @@
 package org.nico.ratel.landlords.client.event;
 
 import io.netty.channel.Channel;
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.client.SimpleClient;
 import org.nico.ratel.landlords.client.entity.User;
 import org.nico.ratel.landlords.enums.ServerEventCode;

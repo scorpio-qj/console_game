@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.nico.noson.Noson;
 import org.nico.noson.util.string.StringUtils;
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.entity.ClientSide;
 import org.nico.ratel.landlords.entity.Poker;
 import org.nico.ratel.landlords.entity.Room;

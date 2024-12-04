@@ -3,14 +3,14 @@ package org.nico.ratel.landlords.server.timer;
 import java.util.Map;
 import java.util.TimerTask;
 
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.entity.ClientSide;
 import org.nico.ratel.landlords.entity.Room;
 import org.nico.ratel.landlords.enums.ClientEventCode;
 import org.nico.ratel.landlords.enums.ClientRole;
 import org.nico.ratel.landlords.enums.ClientStatus;
 import org.nico.ratel.landlords.enums.RoomStatus;
-import org.nico.ratel.landlords.enums.RoomType;
+import org.nico.ratel.landlords.enums.BattleType;
 import org.nico.ratel.landlords.enums.ServerEventCode;
 import org.nico.ratel.landlords.print.SimplePrinter;
 import org.nico.ratel.landlords.server.ServerContains;
@@ -65,7 +65,7 @@ public class RoomClearTask extends TimerTask {
                 ServerEventListener.get(ServerEventCode.CODE_CLIENT_EXIT).call(room.getClientSideList().get(0), null);
 				continue;
             }
-			if (room.getType() != RoomType.PVP) {
+			if (room.getType() != BattleType.PVP) {
 				continue;
 			}
 

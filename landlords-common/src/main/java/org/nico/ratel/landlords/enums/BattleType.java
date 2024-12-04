@@ -1,6 +1,6 @@
 package org.nico.ratel.landlords.enums;
 
-public enum RoomType {
+public enum BattleType {
 
 	PVP("玩家对战"),
 
@@ -9,7 +9,7 @@ public enum RoomType {
 	;
 	private String msg;
 
-	RoomType(String msg) {
+	BattleType(String msg) {
 		this.msg = msg;
 	}
 

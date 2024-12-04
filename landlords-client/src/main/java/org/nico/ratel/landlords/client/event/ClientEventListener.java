@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.nico.ratel.landlords.channel.ChannelUtils;
+import org.nico.ratel.landlords.utils.ChannelUtils;
 import org.nico.ratel.landlords.entity.Poker;
 import org.nico.ratel.landlords.enums.ClientEventCode;
 import org.nico.ratel.landlords.enums.ServerEventCode;
