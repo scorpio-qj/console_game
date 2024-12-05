@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.nico.noson.Noson;
 import org.nico.ratel.commons.ServerEventCode;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuRoleType;
@@ -33,13 +33,13 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 			return;
 		}
 		if (room.getCurrentSellClient() != clientSide.getId()) {
-			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_POKER_PLAY_ORDER_ERROR, null);
+			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_POKER_PLAY_ORDER_ERROR, null);
 			return;
 		}
 		Character[] options = Noson.convert(data, Character[].class);
 		int[] indexes = PokerHelper.getIndexes(options, clientSide.getPokers());
 		if (!PokerHelper.checkPokerIndex(indexes, clientSide.getPokers())) {
-			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_POKER_PLAY_INVALID, null);
+			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_POKER_PLAY_INVALID, null);
 			return;
 		}
 
@@ -47,7 +47,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 		List<Poker> currentPokers = PokerHelper.getPoker(indexes, clientSide.getPokers());
 		DouDiZhuPokerSell currentDouDiZhuPokerSell = PokerHelper.checkPokerType(currentPokers);
 		if (currentDouDiZhuPokerSell.getSellType() == DouDiZhuSellType.ILLEGAL) {
-			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_POKER_PLAY_INVALID, null);
+			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_POKER_PLAY_INVALID, null);
 			return;
 		}
 		if (room.getLastSellClient() != clientSide.getId() && room.getLastPokerShell() != null) {
@@ -60,7 +60,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 						.put("preType", lastDouDiZhuPokerSell.getSellType())
 						.put("preCount", lastDouDiZhuPokerSell.getSellPokers().size())
 						.json();
-				ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_POKER_PLAY_MISMATCH, result);
+				ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_POKER_PLAY_MISMATCH, result);
 				return;
 			}
 			if (lastDouDiZhuPokerSell.getScore() >= currentDouDiZhuPokerSell.getScore()) {
@@ -68,7 +68,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 						.put("playScore", currentDouDiZhuPokerSell.getScore())
 						.put("preScore", lastDouDiZhuPokerSell.getScore())
 						.json();
-				ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_POKER_PLAY_LESS, result);
+				ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_POKER_PLAY_LESS, result);
 				return;
 			}
 		}
@@ -112,7 +112,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 
 		for (ClientSide client : room.getClientSideList()) {
 			if (client.getRole() == BattleRoleType.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_SHOW_POKERS, result);
+				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_SHOW_POKERS, result);
 			}
 		}
 
@@ -120,7 +120,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 
 		if (!clientSide.getPokers().isEmpty()) {
 			if (next.getRole() == BattleRoleType.ROBOT) {
-				RobotEventListener.get(BasicEventCode.CODE_GAME_POKER_PLAY).call(next, data);
+				RobotEventListener.get(ClientEventCode.CODE_GAME_POKER_PLAY).call(next, data);
 			} else {
 				get(ServerEventCode.CODE_GAME_POKER_PLAY_REDIRECT).call(next, result);
 			}
@@ -187,7 +187,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 			room.initScoreRate();
 			for (ClientSide client : room.getClientSideList()) {
 				client.setStatus(DouDiZhuActorRoomState.NO_READY);
-				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_OVER, result);
+				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_OVER, result);
 			}
 		}else{
 			get(ServerEventCode.CODE_CLIENT_EXIT).call(winner, "");
@@ -219,7 +219,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 	 */
 	private void notifyWatcherPlayPoker(Room room, String result) {
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_SHOW_POKERS, result);
+			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_SHOW_POKERS, result);
 		}
 	}
 
@@ -231,7 +231,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 	 */
 	private void notifyWatcherGameOver(Room room, String  result) {
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_GAME_OVER, result);
+			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_GAME_OVER, result);
 		}
 	}
 }

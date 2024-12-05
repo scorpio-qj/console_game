@@ -1,6 +1,6 @@
 package org.nico.ratel.games.poker.doudizhu.entity;
 
-import org.nico.ratel.commons.GameInfos;
+import org.nico.ratel.games.GameInfos;
 import org.nico.ratel.games.poker.common.Poker;
 import org.nico.ratel.games.poker.common.PokerDesc;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuGameRule;

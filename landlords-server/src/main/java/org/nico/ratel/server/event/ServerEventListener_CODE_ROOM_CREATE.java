@@ -4,7 +4,7 @@ import org.nico.noson.Noson;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.room.Room;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.commons.room.enums.RoomStatus;
 import org.nico.ratel.commons.BattleType;
@@ -30,6 +30,6 @@ public class ServerEventListener_CODE_ROOM_CREATE implements ServerEventListener
 
 		clientSide.setStatus(DouDiZhuActorRoomState.NO_READY);
 
-		ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_ROOM_CREATE_SUCCESS, Noson.reversal(room));
+		ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_ROOM_CREATE_SUCCESS, Noson.reversal(room));
 	}
 }

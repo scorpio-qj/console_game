@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.room.Room;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.commons.room.enums.RoomStatus;
 import org.nico.ratel.commons.ServerEventCode;
@@ -24,7 +24,7 @@ public class ServerEventListener_CODE_ROOM_JOIN implements ServerEventListener {
 			String result = MapHelper.newInstance()
 					.put("roomId", data)
 					.json();
-			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_ROOM_JOIN_FAIL_BY_INEXIST, result);
+			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_ROOM_JOIN_FAIL_BY_INEXIST, result);
 			return;
 		}
 		if (room.getClientSideList().size() == 3) {
@@ -32,7 +32,7 @@ public class ServerEventListener_CODE_ROOM_JOIN implements ServerEventListener {
 					.put("roomId", room.getId())
 					.put("roomOwner", room.getRoomOwner())
 					.json();
-			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_ROOM_JOIN_FAIL_BY_FULL, result);
+			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_ROOM_JOIN_FAIL_BY_FULL, result);
 			return;
 		}
 		// join default ready
@@ -59,7 +59,7 @@ public class ServerEventListener_CODE_ROOM_JOIN implements ServerEventListener {
 				.put("roomClientCount", room.getClientSideList().size())
 				.json();
 		for (ClientSide client : roomClientMap.values()) {
-			ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_ROOM_JOIN_SUCCESS, result);
+			ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_ROOM_JOIN_SUCCESS, result);
 		}
 
 		if (roomClientMap.size() == 3) {
@@ -81,7 +81,7 @@ public class ServerEventListener_CODE_ROOM_JOIN implements ServerEventListener {
 	 */
 	private void notifyWatcherJoinRoom(Room room, ClientSide clientSide) {
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_ROOM_JOIN_SUCCESS, clientSide.getNickname());
+			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_ROOM_JOIN_SUCCESS, clientSide.getNickname());
 		}
 	}
 }

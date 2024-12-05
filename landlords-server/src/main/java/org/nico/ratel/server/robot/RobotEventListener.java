@@ -5,18 +5,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.nico.ratel.commons.clientactor.ClientSide;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 
 public interface RobotEventListener {
 
 	String LISTENER_PREFIX = "org.nico.ratel.landlords.server.robot.RobotEventListener_";
 
-	Map<BasicEventCode, RobotEventListener> LISTENER_MAP = new HashMap<>();
+	Map<ClientEventCode, RobotEventListener> LISTENER_MAP = new HashMap<>();
 
 	void call(ClientSide robot, String data);
 
 	@SuppressWarnings("unchecked")
-	static RobotEventListener get(BasicEventCode code) {
+	static RobotEventListener get(ClientEventCode code) {
 		RobotEventListener listener = null;
 		try {
 			if (RobotEventListener.LISTENER_MAP.containsKey(code)) {

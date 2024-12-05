@@ -9,7 +9,7 @@ import org.nico.noson.Noson;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.room.Room;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.server.ServerContains;
 
@@ -27,7 +27,7 @@ public class ServerEventListener_CODE_GET_ROOMS implements ServerEventListener {
 					.put("roomType", room.getType())
 					.map());
 		}
-		ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_SHOW_ROOMS, Noson.reversal(roomList));
+		ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_SHOW_ROOMS, Noson.reversal(roomList));
 	}
 
 }

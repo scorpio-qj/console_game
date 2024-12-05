@@ -1,6 +1,6 @@
 package org.nico.ratel.commons.utils;
 
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.ServerEventCode;
 import org.nico.ratel.commons.proto.ClientTransferData;
 import org.nico.ratel.commons.msg.Msg;
@@ -12,11 +12,11 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 public class ChannelUtils {
 
-	public static void pushToClient(Channel channel, BasicEventCode code, String data) {
+	public static void pushToClient(Channel channel, ClientEventCode code, String data) {
 		pushToClient(channel, code, data, null);
 	}
 
-	public static void pushToClient(Channel channel, BasicEventCode code, String data, String info) {
+	public static void pushToClient(Channel channel, ClientEventCode code, String data, String info) {
 		if (channel != null) {
 			if (channel.pipeline().get("ws") != null) {
 				Msg msg = new Msg();

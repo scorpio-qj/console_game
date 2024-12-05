@@ -1,7 +1,7 @@
 package org.nico.ratel.server.event;
 
 import org.nico.ratel.commons.ServerEventCode;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.commons.room.enums.RoomStatus;
@@ -50,7 +50,7 @@ public class ServerEventListener_CODE_GAME_READY implements ServerEventListener 
 
 		for (ClientSide client : room.getClientSideList()) {
 			if (client.getRole() == BattleRoleType.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_READY, result);
+				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_READY, result);
 			}
 		}
 

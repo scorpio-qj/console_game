@@ -11,7 +11,7 @@ import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.games.poker.Poker;
 import org.nico.ratel.commons.room.Room;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.server.ServerContains;
 import org.nico.ratel.commons.utils.LastCardsUtils;
@@ -57,7 +57,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY_REDIRECT implements Server
 				.put("lastPokers",lastPokers)
 				.json();
 
-		ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_POKER_PLAY_REDIRECT, result);
+		ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_POKER_PLAY_REDIRECT, result);
 	}
 
 }

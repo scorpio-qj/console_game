@@ -3,7 +3,7 @@ package org.nico.ratel.server.event;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.room.Room;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.server.ServerContains;
@@ -34,7 +34,7 @@ public class ServerEventListener_CODE_CLIENT_OFFLINE implements ServerEventListe
 				continue;
 			}
 			if (client.getId() != clientSide.getId()) {
-				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_CLIENT_EXIT, result);
+				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_CLIENT_EXIT, result);
 				client.init();
 			}
 		}

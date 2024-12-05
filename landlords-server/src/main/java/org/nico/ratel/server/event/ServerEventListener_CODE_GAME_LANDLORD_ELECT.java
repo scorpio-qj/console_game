@@ -4,7 +4,7 @@ package org.nico.ratel.server.event;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.room.Room;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuRoleType;
 import org.nico.ratel.commons.ServerEventCode;
@@ -36,7 +36,7 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 			if (highestScore == 0) {
 				for (ClientSide client : room.getClientSideList()) {
 					if (client.getRole() == BattleRoleType.PLAYER) {
-						ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_CYCLE, null);
+						ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_CYCLE, null);
 					}
 				}
 				get(ServerEventCode.CODE_GAME_STARTING).call(clientSide, null);
@@ -81,11 +81,11 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 		}
 		for (ClientSide client : room.getClientSideList()) {
 			if (client.getRole() == BattleRoleType.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_ELECT, result);
+				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_ELECT, result);
 				continue;
 			}
 			if (client.getId() == turnClientSide.getId()) {
-				RobotEventListener.get(BasicEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
+				RobotEventListener.get(ClientEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
 			}
 		}
 		notifyWatcherRobLandlord(room, clientSide);
@@ -114,12 +114,12 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 			client.resetRound();
 
 			if (client.getRole() == BattleRoleType.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_CONFIRM, result);
+				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_CONFIRM, result);
 				continue;
 			}
 
 			if (currentClientId == client.getId()) {
-				RobotEventListener.get(BasicEventCode.CODE_GAME_POKER_PLAY).call(client, result);
+				RobotEventListener.get(ClientEventCode.CODE_GAME_POKER_PLAY).call(client, result);
 			}
 		}
 
@@ -139,7 +139,7 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 							.json();
 
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_CONFIRM, json);
+			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_CONFIRM, json);
 		}
 	}
 
@@ -150,7 +150,7 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 	 */
 	private void notifyWatcherRobLandlord(Room room, ClientSide player) {
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_ELECT, player.getNickname());
+			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_ELECT, player.getNickname());
 		}
 	}
 }

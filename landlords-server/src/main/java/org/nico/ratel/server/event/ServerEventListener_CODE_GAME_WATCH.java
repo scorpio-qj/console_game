@@ -4,7 +4,7 @@ import org.nico.noson.Noson;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.room.Room;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.server.ServerContains;
 
@@ -22,7 +22,7 @@ public class ServerEventListener_CODE_GAME_WATCH implements ServerEventListener 
                     .put("roomId", data)
                     .json();
 
-            ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_ROOM_JOIN_FAIL_BY_INEXIST, result);
+            ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_ROOM_JOIN_FAIL_BY_INEXIST, result);
         } else {
             // 将用户加入到房间中的观战者列表中
             clientSide.setRoomId(room.getId());
@@ -31,7 +31,7 @@ public class ServerEventListener_CODE_GAME_WATCH implements ServerEventListener 
             Map<String, String> map = new HashMap<>(16);
             map.put("owner", room.getRoomOwner());
             map.put("status", room.getStatus().toString());
-            ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_WATCH_SUCCESSFUL, Noson.reversal(map));
+            ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_WATCH_SUCCESSFUL, Noson.reversal(map));
         }
     }
 }

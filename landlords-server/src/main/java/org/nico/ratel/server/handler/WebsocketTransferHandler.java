@@ -10,7 +10,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.msg.Msg;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.commons.ServerEventCode;
@@ -67,8 +67,8 @@ public class WebsocketTransferHandler extends SimpleChannelInboundHandler<TextWe
             new Thread(() -> {
                 try {
                     Thread.sleep(2000L);
-                    ChannelUtils.pushToClient(ch, BasicEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
-                    ChannelUtils.pushToClient(ch, BasicEventCode.CODE_CLIENT_NICKNAME_SET, null);
+                    ChannelUtils.pushToClient(ch, ClientEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
+                    ChannelUtils.pushToClient(ch, ClientEventCode.CODE_CLIENT_NICKNAME_SET, null);
                 } catch (InterruptedException ignored) {
                 }
             }).start();

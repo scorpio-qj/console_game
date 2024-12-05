@@ -2,7 +2,7 @@ package org.nico.ratel.server.event;
 
 import org.nico.ratel.commons.BattleType;
 import org.nico.ratel.commons.ServerEventCode;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.commons.room.enums.RoomStatus;
@@ -19,7 +19,7 @@ public class ServerEventListener_CODE_ROOM_CREATE_PVE implements ServerEventList
 
 		int difficultyCoefficient = Integer.parseInt(data);
 		if (!RobotDecisionMakers.contains(difficultyCoefficient)) {
-			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_PVE_DIFFICULTY_NOT_SUPPORT, null);
+			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_PVE_DIFFICULTY_NOT_SUPPORT, null);
 			return;
 		}
 

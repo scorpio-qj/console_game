@@ -6,10 +6,10 @@ import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.nico.ratel.client.entity.User;
-import org.nico.ratel.client.event.ClientEventListener;
+import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.msg.Msg;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.ServerEventCode;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.commons.utils.JsonUtils;
@@ -25,13 +25,13 @@ public class WebsocketTransferHandler extends SimpleChannelInboundHandler<TextWe
 		if(msg.getInfo() != null && ! msg.getInfo().isEmpty()) {
 			SimplePrinter.printNotice(msg.getInfo());
 		}
-		BasicEventCode code = BasicEventCode.valueOf(msg.getCode());
+		ClientEventCode code = ClientEventCode.valueOf(msg.getCode());
 		if (User.INSTANCE.isWatching()) {
 			Map<String, Object> wrapMap = new HashMap<>(3);
 			wrapMap.put("code", code);
 			wrapMap.put("data", msg.getData());
 
-			ClientEventListener.get(BasicEventCode.CODE_GAME_WATCH).call(ctx.channel(), JsonUtils.toJson(wrapMap));
+			ClientEventListener.get(ClientEventCode.CODE_GAME_WATCH).call(ctx.channel(), JsonUtils.toJson(wrapMap));
 		} else {
 			ClientEventListener.get(code).call(ctx.channel(), msg.getData());
 		}

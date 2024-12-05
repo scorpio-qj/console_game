@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuRoleType;
@@ -72,10 +72,10 @@ public class ServerEventListener_CODE_GAME_STARTING implements ServerEventListen
 					.json();
 
 			if (client.getRole() == BattleRoleType.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_STARTING, result);
+				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_STARTING, result);
 			} else {
 				if (startGrabClient.getId() == client.getId()) {
-					RobotEventListener.get(BasicEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
+					RobotEventListener.get(ClientEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
 				}
 			}
 
@@ -97,7 +97,7 @@ public class ServerEventListener_CODE_GAME_STARTING implements ServerEventListen
 				.put("player3", room.getClientSideList().getLast().getNickname())
 				.json();
 		for (ClientSide clientSide : room.getWatcherList()) {
-			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_STARTING, result);
+			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_STARTING, result);
 		}
 	}
 

@@ -3,7 +3,7 @@ package org.nico.ratel.server.handler;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.proto.ServerTransferData.ServerTransferDataProtoc;
-import org.nico.ratel.commons.BasicEventCode;
+import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.BattleRoleType;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.commons.ServerEventCode;
@@ -39,8 +39,8 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 		ServerContains.CLIENT_SIDE_MAP.put(clientSide.getId(), clientSide);
 		SimplePrinter.serverLog("Has client connect to the server: " + clientSide.getId());
 
-		ChannelUtils.pushToClient(channel, BasicEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
-		ChannelUtils.pushToClient(channel, BasicEventCode.CODE_CLIENT_NICKNAME_SET, null);
+		ChannelUtils.pushToClient(channel, ClientEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
+		ChannelUtils.pushToClient(channel, ClientEventCode.CODE_CLIENT_NICKNAME_SET, null);
 	}
 
 
