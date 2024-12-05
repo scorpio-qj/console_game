@@ -7,17 +7,17 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
-import org.nico.ratel.landlords.utils.ChannelUtils;
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.entity.Msg;
-import org.nico.ratel.landlords.enums.ClientEventCode;
-import org.nico.ratel.landlords.enums.ClientRole;
-import org.nico.ratel.landlords.enums.ClientStatus;
-import org.nico.ratel.landlords.enums.ServerEventCode;
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.utils.ChannelUtils;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.msg.Msg;
+import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.client.enums.ClientRole;
+import org.nico.ratel.client.enums.ClientStatus;
+import org.nico.ratel.ServerEventCode;
+import org.nico.ratel.print.SimplePrinter;
 import org.nico.ratel.landlords.server.ServerContains;
 import org.nico.ratel.landlords.server.event.ServerEventListener;
-import org.nico.ratel.landlords.utils.JsonUtils;
+import org.nico.ratel.utils.JsonUtils;
 
 import java.util.Objects;
 

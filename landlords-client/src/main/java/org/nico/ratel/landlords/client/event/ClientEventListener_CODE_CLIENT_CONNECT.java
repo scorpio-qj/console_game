@@ -2,8 +2,8 @@ package org.nico.ratel.landlords.client.event;
 
 import org.nico.noson.Noson;
 import org.nico.ratel.landlords.client.SimpleClient;
-import org.nico.ratel.landlords.enums.ServerEventCode;
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.ServerEventCode;
+import org.nico.ratel.print.SimplePrinter;
 
 import io.netty.channel.Channel;
 

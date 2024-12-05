@@ -3,9 +3,9 @@ package org.nico.ratel.landlords.client.event;
 import java.util.Map;
 
 import org.nico.ratel.landlords.client.SimpleClient;
-import org.nico.ratel.landlords.enums.ClientEventCode;
-import org.nico.ratel.landlords.helper.MapHelper;
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.helper.MapHelper;
+import org.nico.ratel.print.SimplePrinter;
 
 import io.netty.channel.Channel;
 

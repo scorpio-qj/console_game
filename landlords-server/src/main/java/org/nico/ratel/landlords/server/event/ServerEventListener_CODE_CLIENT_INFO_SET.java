@@ -1,7 +1,7 @@
 package org.nico.ratel.landlords.server.event;
 
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.utils.JsonUtils;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.utils.JsonUtils;
 
 import java.util.Map;
 

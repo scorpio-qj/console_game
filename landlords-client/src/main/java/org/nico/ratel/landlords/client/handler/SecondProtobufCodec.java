@@ -2,7 +2,7 @@ package org.nico.ratel.landlords.client.handler;
 
 import java.util.List;
 
-import org.nico.ratel.landlords.proto.ClientTransferData.ClientTransferDataProtoc;
+import org.nico.ratel.proto.ClientTransferData.ClientTransferDataProtoc;
 
 import com.google.protobuf.MessageLite;
 

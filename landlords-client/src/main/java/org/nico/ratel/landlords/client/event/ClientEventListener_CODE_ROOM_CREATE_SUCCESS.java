@@ -1,8 +1,8 @@
 package org.nico.ratel.landlords.client.event;
 
 import org.nico.noson.Noson;
-import org.nico.ratel.landlords.entity.Room;
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.room.Room;
+import org.nico.ratel.print.SimplePrinter;
 
 import io.netty.channel.Channel;
 

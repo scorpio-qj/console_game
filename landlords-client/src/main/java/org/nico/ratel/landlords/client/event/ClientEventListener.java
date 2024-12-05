@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.nico.ratel.landlords.utils.ChannelUtils;
-import org.nico.ratel.landlords.entity.Poker;
-import org.nico.ratel.landlords.enums.ClientEventCode;
-import org.nico.ratel.landlords.enums.ServerEventCode;
+import org.nico.ratel.utils.ChannelUtils;
+import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.ServerEventCode;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;

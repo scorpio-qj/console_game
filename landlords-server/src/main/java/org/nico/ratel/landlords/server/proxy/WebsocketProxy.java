@@ -15,15 +15,11 @@ import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
-import org.nico.ratel.landlords.print.SimplePrinter;
-import org.nico.ratel.landlords.robot.RobotDecisionMakers;
-import org.nico.ratel.landlords.server.ServerContains;
-import org.nico.ratel.landlords.server.handler.ProtobufTransferHandler;
+import org.nico.ratel.print.SimplePrinter;
+import org.nico.ratel.robot.RobotDecisionMakers;
 import org.nico.ratel.landlords.server.handler.WebsocketTransferHandler;
-import org.nico.ratel.landlords.server.timer.RoomClearTask;
 
 import java.net.InetSocketAddress;
-import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 public class WebsocketProxy implements Proxy{

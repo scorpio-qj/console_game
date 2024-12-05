@@ -1,15 +1,15 @@
 package org.nico.ratel.landlords.server.robot;
 
 import org.nico.noson.Noson;
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.entity.PokerSell;
-import org.nico.ratel.landlords.entity.Room;
-import org.nico.ratel.landlords.enums.SellType;
-import org.nico.ratel.landlords.enums.ServerEventCode;
-import org.nico.ratel.landlords.helper.PokerHelper;
-import org.nico.ratel.landlords.helper.TimeHelper;
-import org.nico.ratel.landlords.print.SimplePrinter;
-import org.nico.ratel.landlords.robot.RobotDecisionMakers;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.games.poker.doudizhu.entity.PokerSell;
+import org.nico.ratel.room.Room;
+import org.nico.ratel.games.poker.doudizhu.SellType;
+import org.nico.ratel.ServerEventCode;
+import org.nico.ratel.helper.PokerHelper;
+import org.nico.ratel.helper.TimeHelper;
+import org.nico.ratel.print.SimplePrinter;
+import org.nico.ratel.robot.RobotDecisionMakers;
 import org.nico.ratel.landlords.server.ServerContains;
 import org.nico.ratel.landlords.server.event.ServerEventListener;
 

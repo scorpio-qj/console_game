@@ -1,8 +1,8 @@
 package org.nico.ratel.landlords.server.event;
 
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.entity.Room;
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.room.Room;
+import org.nico.ratel.print.SimplePrinter;
 import org.nico.ratel.landlords.server.ServerContains;
 
 public class ServerEventListener_CODE_GAME_WATCH_EXIT implements ServerEventListener {

@@ -11,7 +11,7 @@ import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.nico.ratel.landlords.client.handler.WebsocketTransferHandler;
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.print.SimplePrinter;
 
 import java.net.URI;
 import java.net.URISyntaxException;

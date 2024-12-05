@@ -4,8 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.enums.ClientEventCode;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.client.enums.ClientEventCode;
 
 public interface RobotEventListener {
 

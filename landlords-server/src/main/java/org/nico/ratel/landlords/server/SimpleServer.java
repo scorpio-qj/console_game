@@ -1,9 +1,6 @@
 package org.nico.ratel.landlords.server;
 
-import org.nico.ratel.landlords.enums.ServerEventCode;
-import org.nico.ratel.landlords.server.event.ServerEventListener;
-import org.nico.ratel.landlords.server.proxy.ProtobufProxy;
-import org.nico.ratel.landlords.server.proxy.WebsocketProxy;
+import org.nico.ratel.ServerEventCode;
 
 public class SimpleServer {
 

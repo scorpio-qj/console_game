@@ -8,8 +8,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.entity.Room;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.room.Room;
 
 public class ServerContains {
 

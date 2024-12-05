@@ -13,11 +13,11 @@ import org.nico.noson.util.string.StringUtils;
 import org.nico.ratel.landlords.client.entity.User;
 import org.nico.ratel.landlords.client.proxy.ProtobufProxy;
 import org.nico.ratel.landlords.client.proxy.WebsocketProxy;
-import org.nico.ratel.landlords.helper.FeaturesHelper;
-import org.nico.ratel.landlords.helper.I18nHelper;
-import org.nico.ratel.landlords.print.SimplePrinter;
-import org.nico.ratel.landlords.print.SimpleWriter;
-import org.nico.ratel.landlords.utils.StreamUtils;
+import org.nico.ratel.helper.FeaturesHelper;
+import org.nico.ratel.helper.I18nHelper;
+import org.nico.ratel.print.SimplePrinter;
+import org.nico.ratel.print.SimpleWriter;
+import org.nico.ratel.utils.StreamUtils;
 
 public class SimpleClient {
 

@@ -1,11 +1,11 @@
 package org.nico.ratel.landlords.client.event;
 
 import org.nico.ratel.landlords.client.entity.User;
-import org.nico.ratel.landlords.enums.ClientEventCode;
-import org.nico.ratel.landlords.enums.ServerEventCode;
-import org.nico.ratel.landlords.print.SimplePrinter;
-import org.nico.ratel.landlords.print.SimpleWriter;
-import org.nico.ratel.landlords.utils.OptionsUtils;
+import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.ServerEventCode;
+import org.nico.ratel.print.SimplePrinter;
+import org.nico.ratel.print.SimpleWriter;
+import org.nico.ratel.utils.OptionsUtils;
 
 import io.netty.channel.Channel;
 

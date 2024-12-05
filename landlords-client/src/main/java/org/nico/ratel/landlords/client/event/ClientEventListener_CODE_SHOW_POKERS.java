@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.nico.noson.Noson;
 import org.nico.noson.entity.NoType;
-import org.nico.ratel.landlords.entity.Poker;
-import org.nico.ratel.landlords.helper.MapHelper;
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.helper.MapHelper;
+import org.nico.ratel.print.SimplePrinter;
 
 import io.netty.channel.Channel;
 

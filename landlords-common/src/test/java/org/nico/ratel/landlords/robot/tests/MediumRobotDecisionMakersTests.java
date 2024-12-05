@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.entity.Poker;
-import org.nico.ratel.landlords.entity.PokerSell;
-import org.nico.ratel.landlords.enums.PokerLevel;
-import org.nico.ratel.landlords.enums.PokerType;
-import org.nico.ratel.landlords.enums.SellType;
-import org.nico.ratel.landlords.helper.PokerHelper;
-import org.nico.ratel.landlords.robot.MediumRobotDecisionMakers;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.games.poker.doudizhu.entity.PokerSell;
+import org.nico.ratel.games.poker.doudizhu.PokerLevel;
+import org.nico.ratel.games.poker.PokerType;
+import org.nico.ratel.helper.PokerHelper;
+import org.nico.ratel.robot.MediumRobotDecisionMakers;
 
 public class MediumRobotDecisionMakersTests {
 

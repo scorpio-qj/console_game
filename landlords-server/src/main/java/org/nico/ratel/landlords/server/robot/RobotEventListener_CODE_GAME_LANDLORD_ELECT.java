@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.nico.ratel.landlords.entity.ClientSide;
-import org.nico.ratel.landlords.entity.Poker;
-import org.nico.ratel.landlords.entity.Room;
-import org.nico.ratel.landlords.enums.ServerEventCode;
-import org.nico.ratel.landlords.helper.PokerHelper;
-import org.nico.ratel.landlords.helper.MapHelper;
-import org.nico.ratel.landlords.helper.TimeHelper;
-import org.nico.ratel.landlords.robot.RobotDecisionMakers;
+import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.room.Room;
+import org.nico.ratel.ServerEventCode;
+import org.nico.ratel.helper.PokerHelper;
+import org.nico.ratel.helper.MapHelper;
+import org.nico.ratel.helper.TimeHelper;
+import org.nico.ratel.robot.RobotDecisionMakers;
 import org.nico.ratel.landlords.server.ServerContains;
 import org.nico.ratel.landlords.server.event.ServerEventListener;
 

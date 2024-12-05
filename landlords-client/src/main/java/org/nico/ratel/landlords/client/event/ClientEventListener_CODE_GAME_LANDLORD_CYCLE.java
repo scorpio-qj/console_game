@@ -1,6 +1,6 @@
 package org.nico.ratel.landlords.client.event;
 
-import org.nico.ratel.landlords.print.SimplePrinter;
+import org.nico.ratel.print.SimplePrinter;
 
 import io.netty.channel.Channel;
 
