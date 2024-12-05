@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.games.poker.Poker;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
 import org.nico.ratel.games.poker.PokerDesc;
 import org.nico.ratel.games.poker.PokerSuit;
-import org.nico.ratel.helper.PokerHelper;
-import org.nico.ratel.robot.MediumRobotDecisionMakers;
 
 public class MediumRobotDecisionMakersTests {
 

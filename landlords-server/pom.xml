@@ -13,13 +13,18 @@
 	</parent>
 
 	<properties>
-		<start-class>org.nico.ratel.landlords.server.SimpleServer</start-class>
+		<start-class>org.nico.ratel.server.SimpleServer</start-class>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.smallnico.ratel</groupId>
 			<artifactId>landlords-common</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.smallnico.ratel</groupId>
+			<artifactId>landlords-game</artifactId>
 			<version>1.4.0</version>
 		</dependency>
 	</dependencies>

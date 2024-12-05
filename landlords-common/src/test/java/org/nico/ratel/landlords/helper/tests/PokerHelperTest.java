@@ -8,7 +8,7 @@ import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
 import org.nico.ratel.games.poker.PokerDesc;
 import org.nico.ratel.games.poker.PokerSuit;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuSellType;
-import org.nico.ratel.helper.PokerHelper;
+import org.nico.ratel.commons.helper.PokerHelper;
 
 import java.util.ArrayList;
 
