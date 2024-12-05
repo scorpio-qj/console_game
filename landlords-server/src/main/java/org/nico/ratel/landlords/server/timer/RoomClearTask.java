@@ -4,11 +4,11 @@ import java.util.Map;
 import java.util.TimerTask;
 
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.room.Room;
-import org.nico.ratel.client.enums.ClientEventCode;
-import org.nico.ratel.client.enums.ClientRole;
-import org.nico.ratel.client.enums.ClientStatus;
+import org.nico.ratel.BasicEventCode;
+import org.nico.ratel.BattleRoleType;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.room.enums.RoomStatus;
 import org.nico.ratel.BattleType;
 import org.nico.ratel.ServerEventCode;
@@ -75,7 +75,7 @@ public class RoomClearTask extends TimerTask {
 
 			boolean allRobots = true;
 			for (ClientSide client : room.getClientSideList()) {
-				if (client.getId() != room.getCurrentSellClient() && client.getRole() == ClientRole.PLAYER) {
+				if (client.getId() != room.getCurrentSellClient() && client.getRole() == BattleRoleType.PLAYER) {
 					allRobots = false;
 					break;
 				}
@@ -89,7 +89,7 @@ public class RoomClearTask extends TimerTask {
 				continue;
 			}
             //kick this client
-            ChannelUtils.pushToClient(currentPlayer.getChannel(), ClientEventCode.CODE_CLIENT_KICK, null);
+            ChannelUtils.pushToClient(currentPlayer.getChannel(), BasicEventCode.CODE_CLIENT_KICK, null);
 
 			notifyWatcherClientKick(room, currentPlayer);
 
@@ -97,9 +97,9 @@ public class RoomClearTask extends TimerTask {
             room.getClientSideMap().remove(currentPlayer.getId());
             room.getClientSideList().remove(currentPlayer);
 
-            ClientSide robot = new ClientSide(-ServerContains.getClientId(), ClientStatus.PLAYING, null);
+            ClientSide robot = new ClientSide(-ServerContains.getClientId(), DouDiZhuActorRoomState.PLAYING, null);
             robot.setNickname(currentPlayer.getNickname());
-            robot.setRole(ClientRole.ROBOT);
+            robot.setRole(BattleRoleType.ROBOT);
             robot.setRoomId(room.getId());
             robot.setNext(currentPlayer.getNext());
             robot.setPre(currentPlayer.getPre());
@@ -127,7 +127,7 @@ public class RoomClearTask extends TimerTask {
 
             SimplePrinter.serverLog("room " + room.getId() + " player " + currentPlayer.getNickname() + " " + startingStatusInterval + "ms not operating, automatic custody!");
 
-            RobotEventListener.get(room.getLandlordId() == -1 ? ClientEventCode.CODE_GAME_LANDLORD_ELECT : ClientEventCode.CODE_GAME_POKER_PLAY).call(robot, null);
+            RobotEventListener.get(room.getLandlordId() == -1 ? BasicEventCode.CODE_GAME_LANDLORD_ELECT : BasicEventCode.CODE_GAME_POKER_PLAY).call(robot, null);
 		}
 	}
 
@@ -139,7 +139,7 @@ public class RoomClearTask extends TimerTask {
 	 */
 	private void notifyWatcherClientKick(Room room, ClientSide player) {
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_CLIENT_KICK, player.getNickname());
+			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_CLIENT_KICK, player.getNickname());
 		}
 	}
 }

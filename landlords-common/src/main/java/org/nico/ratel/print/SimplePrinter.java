@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.games.poker.Poker;
 import org.nico.ratel.helper.I18nHelper;
 import org.nico.ratel.helper.PokerHelper;
 

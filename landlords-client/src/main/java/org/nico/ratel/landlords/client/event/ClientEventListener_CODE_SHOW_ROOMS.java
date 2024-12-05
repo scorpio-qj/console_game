@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.nico.noson.Noson;
 import org.nico.noson.entity.NoType;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.print.FormatPrinter;
 import org.nico.ratel.print.SimplePrinter;
 
@@ -26,10 +26,10 @@ public class ClientEventListener_CODE_SHOW_ROOMS extends ClientEventListener {
 				FormatPrinter.printNotice(format, room.get("roomId"), room.get("roomOwner"), room.get("roomClientCount"), room.get("roomType"));
 			}
 			SimplePrinter.printNotice("");
-			get(ClientEventCode.CODE_SHOW_OPTIONS_PVP).call(channel, data);
+			get(BasicEventCode.CODE_SHOW_OPTIONS_PVP).call(channel, data);
 		} else {
 			SimplePrinter.printNotice("No available room. Please create a room!");
-			get(ClientEventCode.CODE_SHOW_OPTIONS_PVP).call(channel, data);
+			get(BasicEventCode.CODE_SHOW_OPTIONS_PVP).call(channel, data);
 		}
 	}
 }

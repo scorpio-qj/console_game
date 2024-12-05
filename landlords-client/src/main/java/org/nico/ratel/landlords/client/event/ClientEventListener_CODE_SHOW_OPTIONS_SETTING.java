@@ -1,7 +1,7 @@
 package org.nico.ratel.landlords.client.event;
 
 import org.nico.ratel.landlords.client.entity.User;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.helper.PokerHelper;
 import org.nico.ratel.print.SimplePrinter;
 import org.nico.ratel.print.SimpleWriter;
@@ -24,13 +24,13 @@ public class ClientEventListener_CODE_SHOW_OPTIONS_SETTING extends ClientEventLi
 		String line = SimpleWriter.write(User.INSTANCE.getNickname(), "setting");
 
 		if (line.equalsIgnoreCase("BACK")) {
-			get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, data);
+			get(BasicEventCode.CODE_SHOW_OPTIONS).call(channel, data);
 		} else {
 			int choose = OptionsUtils.getOptions(line);
 
 			if (choose >= 1 && choose <= 5) {
 				PokerHelper.pokerPrinterType = choose - 1;
-				get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, data);
+				get(BasicEventCode.CODE_SHOW_OPTIONS).call(channel, data);
 			} else {
 				SimplePrinter.printNotice("Invalid setting, please choose again：");
 				call(channel, data);

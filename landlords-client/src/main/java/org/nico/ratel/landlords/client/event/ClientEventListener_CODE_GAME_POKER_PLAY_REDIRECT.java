@@ -2,7 +2,7 @@ package org.nico.ratel.landlords.client.event;
 
 import io.netty.channel.Channel;
 import org.nico.ratel.landlords.client.SimpleClient;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.FormatPrinter;
 import org.nico.ratel.print.SimplePrinter;
@@ -39,7 +39,7 @@ public class ClientEventListener_CODE_GAME_POKER_PLAY_REDIRECT extends ClientEve
 		SimplePrinter.printNotice("");
 
 		if (sellClientId == SimpleClient.id) {
-			get(ClientEventCode.CODE_GAME_POKER_PLAY).call(channel, data);
+			get(BasicEventCode.CODE_GAME_POKER_PLAY).call(channel, data);
 		} else {
 			SimplePrinter.printNotice("It is " + map.get("sellClientNickname") + "'s turn. Please wait for him to play his cards.");
 		}

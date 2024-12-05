@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.nico.noson.util.string.StringUtils;
 import org.nico.ratel.landlords.client.entity.User;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
@@ -33,7 +33,7 @@ public class ClientEventListener_CODE_CLIENT_NICKNAME_SET extends ClientEventLis
 		// If the length of nickname is more that NICKNAME_MAX_LENGTH
 		if (nickname.trim().length() > NICKNAME_MAX_LENGTH) {
 			String result = MapHelper.newInstance().put("invalidLength", nickname.trim().length()).json();
-			get(ClientEventCode.CODE_CLIENT_NICKNAME_SET).call(channel, result);
+			get(BasicEventCode.CODE_CLIENT_NICKNAME_SET).call(channel, result);
 		} else {
 			pushToServer(channel, ServerEventCode.CODE_CLIENT_NICKNAME_SET, nickname);
 			User.INSTANCE.setNickname(nickname);

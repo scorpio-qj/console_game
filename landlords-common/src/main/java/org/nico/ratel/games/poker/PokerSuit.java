@@ -5,7 +5,7 @@ package org.nico.ratel.games.poker;
  *
  * @author nico
  */
-public enum PokerType {
+public enum PokerSuit {
 
 	BLANK(" "),
 
@@ -19,7 +19,7 @@ public enum PokerType {
 
 	private final String name;
 
-	PokerType(String name) {
+	PokerSuit(String name) {
 		this.name = name;
 	}
 

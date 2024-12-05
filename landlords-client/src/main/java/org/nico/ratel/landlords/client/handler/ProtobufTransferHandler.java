@@ -5,7 +5,7 @@ import org.nico.ratel.utils.ChannelUtils;
 import org.nico.ratel.landlords.client.entity.User;
 import org.nico.ratel.landlords.client.event.ClientEventListener;
 import org.nico.ratel.proto.ClientTransferData.ClientTransferDataProtoc;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.print.SimplePrinter;
 
@@ -27,13 +27,13 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 			if (!clientTransferData.getInfo().isEmpty()) {
 				SimplePrinter.printNotice(clientTransferData.getInfo());
 			}
-			ClientEventCode code = ClientEventCode.valueOf(clientTransferData.getCode());
+			BasicEventCode code = BasicEventCode.valueOf(clientTransferData.getCode());
 			if (User.INSTANCE.isWatching()) {
 				Map<String, Object> wrapMap = new HashMap<>(3);
 				wrapMap.put("code", code);
 				wrapMap.put("data", clientTransferData.getData());
 
-				ClientEventListener.get(ClientEventCode.CODE_GAME_WATCH).call(ctx.channel(), Noson.reversal(wrapMap));
+				ClientEventListener.get(BasicEventCode.CODE_GAME_WATCH).call(ctx.channel(), Noson.reversal(wrapMap));
 			} else {
 				ClientEventListener.get(code).call(ctx.channel(), clientTransferData.getData());
 			}

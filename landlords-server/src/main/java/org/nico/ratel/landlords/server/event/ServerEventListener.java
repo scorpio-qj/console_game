@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.ServerEventCode;
 
 public interface ServerEventListener {

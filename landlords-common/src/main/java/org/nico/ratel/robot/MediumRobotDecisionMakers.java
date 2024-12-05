@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.nico.ratel.client.ClientSide;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.games.poker.doudizhu.entity.PokerSell;
-import org.nico.ratel.games.poker.doudizhu.SellType;
+import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuSellType;
 import org.nico.ratel.helper.PokerHelper;
 
 
@@ -24,8 +24,8 @@ public class MediumRobotDecisionMakers extends AbstractRobotDecisionMakers {
 	public MediumRobotDecisionMakers() {}
 
 	@Override
-	public PokerSell howToPlayPokers(PokerSell lastPokerSell, ClientSide robot) {
-		if(lastPokerSell != null && lastPokerSell.getSellType() == SellType.KING_BOMB) {
+	public DouDiZhuPokerSell howToPlayPokers(DouDiZhuPokerSell lastDouDiZhuPokerSell, ClientSide robot) {
+		if(lastDouDiZhuPokerSell != null && lastDouDiZhuPokerSell.getSellType() == DouDiZhuSellType.KING_BOMB) {
 			return null;
 		}
 		List<Poker> selfPoker = PokerHelper.clonePokers(robot.getPokers());
@@ -40,13 +40,13 @@ public class MediumRobotDecisionMakers extends AbstractRobotDecisionMakers {
 		pokersList.add(rightPoker);
 		pokersList.add(leftPoker);
 
-		List<PokerSell> sells = PokerHelper.validSells(lastPokerSell, selfPoker);
+		List<DouDiZhuPokerSell> sells = PokerHelper.validSells(lastDouDiZhuPokerSell, selfPoker);
 		if(sells.size() == 0) {
 			return null;
 		}
-		PokerSell bestSell = null;
+		DouDiZhuPokerSell bestSell = null;
 		Long weight = null;
-		for(PokerSell sell: sells) {
+		for(DouDiZhuPokerSell sell: sells) {
 			List<Poker> pokers = PokerHelper.clonePokers(selfPoker);
 			pokers.removeAll(sell.getSellPokers());
 			if(pokers.size() == 0) {
@@ -67,22 +67,22 @@ public class MediumRobotDecisionMakers extends AbstractRobotDecisionMakers {
 		return bestSell;
 	}
 
-	private Boolean deduce(int sellCursor, PokerSell lastPokerSell, int cursor, List<List<Poker>> pokersList, AtomicLong counter) {
+	private Boolean deduce(int sellCursor, DouDiZhuPokerSell lastDouDiZhuPokerSell, int cursor, List<List<Poker>> pokersList, AtomicLong counter) {
 		if(cursor > 2) {
 			cursor = 0;
 		}
 		if(sellCursor == cursor) {
-			lastPokerSell = null;
+			lastDouDiZhuPokerSell = null;
 		}
 
 		List<Poker> original = pokersList.get(cursor);
-		List<PokerSell> sells = PokerHelper.validSells(lastPokerSell, original);
+		List<DouDiZhuPokerSell> sells = PokerHelper.validSells(lastDouDiZhuPokerSell, original);
 		if(sells.size() == 0) {
 			if(sellCursor != cursor) {
-				return deduce(sellCursor, lastPokerSell, cursor + 1, pokersList, counter);
+				return deduce(sellCursor, lastDouDiZhuPokerSell, cursor + 1, pokersList, counter);
 			}
 		}
-		for(PokerSell sell: sells) {
+		for(DouDiZhuPokerSell sell: sells) {
 			List<Poker> pokers = PokerHelper.clonePokers(original);
 			pokers.removeAll(sell.getSellPokers());
 			if(pokers.size() == 0) {
@@ -114,7 +114,7 @@ public class MediumRobotDecisionMakers extends AbstractRobotDecisionMakers {
 		}
 		StringBuilder builder = new StringBuilder();
 		for(int index = 0; index < pokers.size(); index ++) {
-			builder.append(pokers.get(index).getLevel().getLevel()).append(index == pokers.size() - 1 ? "" : "_");
+			builder.append(pokers.get(index).getDesc().getLevel()).append(index == pokers.size() - 1 ? "" : "_");
 		}
 		return builder.toString();
 	}

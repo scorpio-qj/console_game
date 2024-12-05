@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.nico.ratel.client.enums.ClientEventCode;
-import org.nico.ratel.client.enums.ClientRole;
-import org.nico.ratel.client.enums.ClientStatus;
-import org.nico.ratel.client.enums.ClientType;
+import org.nico.ratel.BasicEventCode;
+import org.nico.ratel.BattleRoleType;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuRoleType;
 import org.nico.ratel.room.enums.RoomStatus;
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.client.ClientSide;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.games.poker.Poker;
 import org.nico.ratel.room.Room;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.helper.PokerHelper;
@@ -50,8 +50,8 @@ public class ServerEventListener_CODE_GAME_STARTING implements ServerEventListen
 		room.setFirstSellClient(startGrabClient.getId());
 		List<List<Poker>> otherPokers = new ArrayList<>();
 		for (ClientSide client : roomClientList) {
-			client.setType(ClientType.PEASANT);
-			client.setStatus(ClientStatus.PLAYING);
+			client.setType(DouDiZhuRoleType.PEASANT);
+			client.setStatus(DouDiZhuActorRoomState.PLAYING);
 			for(ClientSide otherClient : roomClientList){
 				if(otherClient.getId() != client.getId()){
 					otherPokers.add(otherClient.getPokers());
@@ -71,11 +71,11 @@ public class ServerEventListener_CODE_GAME_STARTING implements ServerEventListen
 					.put("highestScore", 0)
 					.json();
 
-			if (client.getRole() == ClientRole.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_STARTING, result);
+			if (client.getRole() == BattleRoleType.PLAYER) {
+				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_STARTING, result);
 			} else {
 				if (startGrabClient.getId() == client.getId()) {
-					RobotEventListener.get(ClientEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
+					RobotEventListener.get(BasicEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
 				}
 			}
 
@@ -97,7 +97,7 @@ public class ServerEventListener_CODE_GAME_STARTING implements ServerEventListen
 				.put("player3", room.getClientSideList().getLast().getNickname())
 				.json();
 		for (ClientSide clientSide : room.getWatcherList()) {
-			ChannelUtils.pushToClient(clientSide.getChannel(), ClientEventCode.CODE_GAME_STARTING, result);
+			ChannelUtils.pushToClient(clientSide.getChannel(), BasicEventCode.CODE_GAME_STARTING, result);
 		}
 	}
 

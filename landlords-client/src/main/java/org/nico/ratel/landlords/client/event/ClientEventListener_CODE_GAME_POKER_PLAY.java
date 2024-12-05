@@ -5,9 +5,9 @@ import org.nico.noson.Noson;
 import org.nico.noson.entity.NoType;
 import org.nico.ratel.landlords.client.SimpleClient;
 import org.nico.ratel.landlords.client.entity.User;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.games.poker.doudizhu.entity.PokerSell;
-import org.nico.ratel.games.poker.doudizhu.PokerLevel;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
+import org.nico.ratel.games.poker.PokerDesc;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.helper.PokerHelper;
@@ -55,7 +55,7 @@ public class ClientEventListener_CODE_GAME_POKER_PLAY extends ClientEventListene
 					return;
 				} else {
 					List<Poker> lastSellPokers = Noson.convert(lastSellPokersObj, new NoType<List<Poker>>() {});
-					List<PokerSell> sells = PokerHelper.validSells(PokerHelper.checkPokerType(lastSellPokers), pokers);
+					List<DouDiZhuPokerSell> sells = PokerHelper.validSells(PokerHelper.checkPokerType(lastSellPokers), pokers);
 					if (sells.size() == 0) {
 						SimplePrinter.printNotice("It is a pity that, there is no winning combination...");
 						call(channel, data);
@@ -79,7 +79,7 @@ public class ClientEventListener_CODE_GAME_POKER_PLAY extends ClientEventListene
 									List<Poker> choosePokers = sells.get(choose - 1).getSellPokers();
 									List<Character> options = new ArrayList<>();
 									for (Poker poker : choosePokers) {
-										options.add(poker.getLevel().getAlias()[0]);
+										options.add(poker.getDesc().getAlias()[0]);
 									}
 									pushToServer(channel, ServerEventCode.CODE_GAME_POKER_PLAY, Noson.reversal(options.toArray(new Character[]{})));
 									break;
@@ -101,7 +101,7 @@ public class ClientEventListener_CODE_GAME_POKER_PLAY extends ClientEventListene
 					for (char c : str.toCharArray()) {
 						if (c == ' ' || c == '\t') {
 						} else {
-							if (!PokerLevel.aliasContains(c)) {
+							if (!PokerDesc.aliasContains(c)) {
 								access = false;
 								break;
 							} else {

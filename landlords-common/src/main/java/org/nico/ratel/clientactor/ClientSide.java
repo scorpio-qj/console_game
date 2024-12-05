@@ -1,13 +1,13 @@
-package org.nico.ratel.client;
+package org.nico.ratel.clientactor;
 
 import java.util.List;
 
-import org.nico.ratel.client.enums.ClientRole;
-import org.nico.ratel.client.enums.ClientStatus;
-import org.nico.ratel.client.enums.ClientType;
+import org.nico.ratel.BattleRoleType;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuRoleType;
 
 import io.netty.channel.Channel;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.games.poker.Poker;
 
 public class ClientSide {
 
@@ -25,11 +25,11 @@ public class ClientSide {
 
 	private List<Poker> pokers;
 
-	private ClientStatus status;
+	private DouDiZhuActorRoomState status;
 
-	private ClientRole role;
+	private BattleRoleType role;
 
-	private ClientType type;
+	private DouDiZhuRoleType type;
 
 	private ClientSide next;
 
@@ -41,7 +41,7 @@ public class ClientSide {
 
 	public ClientSide() {}
 
-	public ClientSide(int id, ClientStatus status, Channel channel) {
+	public ClientSide(int id, DouDiZhuActorRoomState status, Channel channel) {
 		this.id = id;
 		this.status = status;
 		this.channel = channel;
@@ -50,7 +50,7 @@ public class ClientSide {
 	public void init() {
 		roomId = 0;
 		pokers = null;
-		status = ClientStatus.TO_CHOOSE;
+		status = DouDiZhuActorRoomState.TO_CHOOSE;
 		type = null;
 		next = null;
 		pre = null;
@@ -69,11 +69,11 @@ public class ClientSide {
 		round += 1;
 	}
 
-	public final ClientRole getRole() {
+	public final BattleRoleType getRole() {
 		return role;
 	}
 
-	public final void setRole(ClientRole role) {
+	public final void setRole(BattleRoleType role) {
 		this.role = role;
 	}
 
@@ -130,19 +130,19 @@ public class ClientSide {
 		return this.scoreInc;
 	}
 
-	public final ClientStatus getStatus() {
+	public final DouDiZhuActorRoomState getStatus() {
 		return status;
 	}
 
-	public final void setStatus(ClientStatus status) {
+	public final void setStatus(DouDiZhuActorRoomState status) {
 		this.status = status;
 	}
 
-	public final ClientType getType() {
+	public final DouDiZhuRoleType getType() {
 		return type;
 	}
 
-	public final void setType(ClientType type) {
+	public final void setType(DouDiZhuRoleType type) {
 		this.type = type;
 	}
 

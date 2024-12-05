@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.nico.ratel.client.ClientSide;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.games.poker.doudizhu.entity.PokerSell;
+import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
 
 /**
  * How does the machine decide on a better strategy to win the game
@@ -26,8 +26,8 @@ public class RobotDecisionMakers {
 		return decisionMakersMap.containsKey(difficultyCoefficient);
 	}
 	
-	public static PokerSell howToPlayPokers(int difficultyCoefficient, PokerSell lastPokerSell, ClientSide robot){
-		return decisionMakersMap.get(difficultyCoefficient).howToPlayPokers(lastPokerSell, robot);
+	public static DouDiZhuPokerSell howToPlayPokers(int difficultyCoefficient, DouDiZhuPokerSell lastDouDiZhuPokerSell, ClientSide robot){
+		return decisionMakersMap.get(difficultyCoefficient).howToPlayPokers(lastDouDiZhuPokerSell, robot);
 	}
 
 	public static int getLandlordScore(int difficultyCoefficient, List<Poker> leftPokers, List<Poker> rightPokers, List<Poker> myPokers) {

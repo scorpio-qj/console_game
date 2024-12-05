@@ -8,11 +8,11 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.msg.Msg;
-import org.nico.ratel.client.enums.ClientEventCode;
-import org.nico.ratel.client.enums.ClientRole;
-import org.nico.ratel.client.enums.ClientStatus;
+import org.nico.ratel.BasicEventCode;
+import org.nico.ratel.BattleRoleType;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.print.SimplePrinter;
 import org.nico.ratel.landlords.server.ServerContains;
@@ -58,17 +58,17 @@ public class WebsocketTransferHandler extends SimpleChannelInboundHandler<TextWe
         } else if (evt instanceof WebSocketServerProtocolHandler.HandshakeComplete) {
             Channel ch = ctx.channel();
             // init client info
-            ClientSide clientSide = new ClientSide(getId(ctx.channel()), ClientStatus.TO_CHOOSE, ch);
+            ClientSide clientSide = new ClientSide(getId(ctx.channel()), DouDiZhuActorRoomState.TO_CHOOSE, ch);
             clientSide.setNickname(String.valueOf(clientSide.getId()));
-            clientSide.setRole(ClientRole.PLAYER);
+            clientSide.setRole(BattleRoleType.PLAYER);
 
             ServerContains.CLIENT_SIDE_MAP.put(clientSide.getId(), clientSide);
             SimplePrinter.serverLog("Has client connect to the server：" + clientSide.getId());
             new Thread(() -> {
                 try {
                     Thread.sleep(2000L);
-                    ChannelUtils.pushToClient(ch, ClientEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
-                    ChannelUtils.pushToClient(ch, ClientEventCode.CODE_CLIENT_NICKNAME_SET, null);
+                    ChannelUtils.pushToClient(ch, BasicEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientSide.getId()));
+                    ChannelUtils.pushToClient(ch, BasicEventCode.CODE_CLIENT_NICKNAME_SET, null);
                 } catch (InterruptedException ignored) {
                 }
             }).start();

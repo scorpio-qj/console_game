@@ -1,11 +1,11 @@
-package org.nico.ratel.client;
+package org.nico.ratel.clientactor;
 
 import io.netty.channel.Channel;
 
 /**
  * 客户端基类
  */
-public abstract class BasicClient {
+public abstract class BasicActor {
 
     private long id;
 

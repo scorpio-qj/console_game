@@ -1,8 +1,8 @@
 package org.nico.ratel.landlords.server.event;
 
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.client.ClientSide;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.landlords.server.ServerContains;
 
@@ -14,11 +14,11 @@ public class ServerEventListener_CODE_CLIENT_NICKNAME_SET implements ServerEvent
 	public void call(ClientSide client, String nickname) {
 		if (nickname.trim().length() > NICKNAME_MAX_LENGTH || nickname.trim().isEmpty()) {
 			String result = MapHelper.newInstance().put("invalidLength", nickname.trim().length()).json();
-			ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_CLIENT_NICKNAME_SET, result);
+			ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_CLIENT_NICKNAME_SET, result);
 			return;
 		}
 		ServerContains.CLIENT_SIDE_MAP.get(client.getId()).setNickname(nickname);
-		ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_SHOW_OPTIONS, null);
+		ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_SHOW_OPTIONS, null);
 	}
 
 }

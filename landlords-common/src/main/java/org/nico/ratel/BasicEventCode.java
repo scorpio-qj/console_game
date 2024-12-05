@@ -1,8 +1,8 @@
-package org.nico.ratel.client.enums;
+package org.nico.ratel;
 
 import java.io.Serializable;
 
-public enum ClientEventCode implements Serializable {
+public enum BasicEventCode implements Serializable {
 
 	CODE_CLIENT_NICKNAME_SET("设置昵称"),
 
@@ -70,7 +70,7 @@ public enum ClientEventCode implements Serializable {
 
 	private String msg;
 
-	private ClientEventCode(String msg) {
+	private BasicEventCode(String msg) {
 		this.msg = msg;
 	}
 

@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.room.Room;
 
 public class ServerContains {

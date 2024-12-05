@@ -1,10 +1,10 @@
 package org.nico.ratel.landlords.server.event;
 
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.room.Room;
-import org.nico.ratel.client.enums.ClientEventCode;
-import org.nico.ratel.client.enums.ClientRole;
+import org.nico.ratel.BasicEventCode;
+import org.nico.ratel.BattleRoleType;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.landlords.server.ServerContains;
 
@@ -30,11 +30,11 @@ public class ServerEventListener_CODE_CLIENT_OFFLINE implements ServerEventListe
 				.put("exitClientNickname", clientSide.getNickname())
 				.json();
 		for (ClientSide client : room.getClientSideList()) {
-			if (client.getRole() != ClientRole.PLAYER) {
+			if (client.getRole() != BattleRoleType.PLAYER) {
 				continue;
 			}
 			if (client.getId() != clientSide.getId()) {
-				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_CLIENT_EXIT, result);
+				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_CLIENT_EXIT, result);
 				client.init();
 			}
 		}

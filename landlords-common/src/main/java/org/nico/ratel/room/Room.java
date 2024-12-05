@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import org.nico.ratel.BattleType;
-import org.nico.ratel.client.ClientSide;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.games.poker.doudizhu.entity.PokerSell;
+import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
 import org.nico.ratel.room.enums.RoomStatus;
 
 public class Room {
@@ -30,7 +30,7 @@ public class Room {
 
 	private List<Poker> landlordPokers;
 
-	private PokerSell lastPokerShell;
+	private DouDiZhuPokerSell lastPokerShell;
 
 	private int lastSellClient = -1;
 
@@ -114,11 +114,11 @@ public class Room {
 		this.type = type;
 	}
 
-	public final PokerSell getLastPokerShell() {
+	public final DouDiZhuPokerSell getLastPokerShell() {
 		return lastPokerShell;
 	}
 
-	public final void setLastPokerShell(PokerSell lastPokerShell) {
+	public final void setLastPokerShell(DouDiZhuPokerSell lastPokerShell) {
 		this.lastPokerShell = lastPokerShell;
 	}
 

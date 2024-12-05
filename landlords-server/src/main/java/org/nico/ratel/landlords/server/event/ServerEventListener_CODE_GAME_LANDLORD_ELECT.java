@@ -2,11 +2,11 @@ package org.nico.ratel.landlords.server.event;
 
 
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.room.Room;
-import org.nico.ratel.client.enums.ClientEventCode;
-import org.nico.ratel.client.enums.ClientRole;
-import org.nico.ratel.client.enums.ClientType;
+import org.nico.ratel.BasicEventCode;
+import org.nico.ratel.BattleRoleType;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuRoleType;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.helper.PokerHelper;
@@ -35,8 +35,8 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 		if (clientSide.getNext().getId() == room.getFirstSellClient()) {
 			if (highestScore == 0) {
 				for (ClientSide client : room.getClientSideList()) {
-					if (client.getRole() == ClientRole.PLAYER) {
-						ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_CYCLE, null);
+					if (client.getRole() == BattleRoleType.PLAYER) {
+						ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_CYCLE, null);
 					}
 				}
 				ServerEventListener.get(ServerEventCode.CODE_GAME_STARTING).call(clientSide, null);
@@ -80,12 +80,12 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 				.json();
 		}
 		for (ClientSide client : room.getClientSideList()) {
-			if (client.getRole() == ClientRole.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_ELECT, result);
+			if (client.getRole() == BattleRoleType.PLAYER) {
+				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_ELECT, result);
 				continue;
 			}
 			if (client.getId() == turnClientSide.getId()) {
-				RobotEventListener.get(ClientEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
+				RobotEventListener.get(BasicEventCode.CODE_GAME_LANDLORD_ELECT).call(client, result);
 			}
 		}
 		notifyWatcherRobLandlord(room, clientSide);
@@ -99,7 +99,7 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 		room.setLandlordId(currentClientId);
 		room.setLastSellClient(currentClientId);
 		room.setCurrentSellClient(currentClientId);
-		clientSide.setType(ClientType.LANDLORD);
+		clientSide.setType(DouDiZhuRoleType.LANDLORD);
 
 		for (ClientSide client : room.getClientSideList()) {
 			String result = MapHelper.newInstance()
@@ -113,13 +113,13 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 					.json();
 			client.resetRound();
 
-			if (client.getRole() == ClientRole.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_CONFIRM, result);
+			if (client.getRole() == BattleRoleType.PLAYER) {
+				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_CONFIRM, result);
 				continue;
 			}
 
 			if (currentClientId == client.getId()) {
-				RobotEventListener.get(ClientEventCode.CODE_GAME_POKER_PLAY).call(client, result);
+				RobotEventListener.get(BasicEventCode.CODE_GAME_POKER_PLAY).call(client, result);
 			}
 		}
 
@@ -139,7 +139,7 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 							.json();
 
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_CONFIRM, json);
+			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_CONFIRM, json);
 		}
 	}
 
@@ -150,7 +150,7 @@ public class ServerEventListener_CODE_GAME_LANDLORD_ELECT implements ServerEvent
 	 */
 	private void notifyWatcherRobLandlord(Room room, ClientSide player) {
 		for (ClientSide watcher : room.getWatcherList()) {
-			ChannelUtils.pushToClient(watcher.getChannel(), ClientEventCode.CODE_GAME_LANDLORD_ELECT, player.getNickname());
+			ChannelUtils.pushToClient(watcher.getChannel(), BasicEventCode.CODE_GAME_LANDLORD_ELECT, player.getNickname());
 		}
 	}
 }

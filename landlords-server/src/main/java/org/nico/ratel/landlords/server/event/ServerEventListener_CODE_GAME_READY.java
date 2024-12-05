@@ -1,12 +1,12 @@
 package org.nico.ratel.landlords.server.event;
 
 import org.nico.ratel.ServerEventCode;
-import org.nico.ratel.client.enums.ClientEventCode;
-import org.nico.ratel.client.enums.ClientRole;
-import org.nico.ratel.client.enums.ClientStatus;
+import org.nico.ratel.BasicEventCode;
+import org.nico.ratel.BattleRoleType;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.room.enums.RoomStatus;
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.room.Room;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
@@ -26,10 +26,10 @@ public class ServerEventListener_CODE_GAME_READY implements ServerEventListener 
 		if (room.getStatus() == RoomStatus.STARTING) {
 			return;
 		}
-		if (clientSide.getStatus() == ClientStatus.PLAYING || clientSide.getStatus() == ClientStatus.TO_CHOOSE || clientSide.getStatus() == ClientStatus.CALL_LANDLORD) {
+		if (clientSide.getStatus() == DouDiZhuActorRoomState.PLAYING || clientSide.getStatus() == DouDiZhuActorRoomState.TO_CHOOSE || clientSide.getStatus() == DouDiZhuActorRoomState.CALL_LANDLORD) {
 			return;
 		}
-		clientSide.setStatus(clientSide.getStatus() == ClientStatus.READY ? ClientStatus.NO_READY : ClientStatus.READY);
+		clientSide.setStatus(clientSide.getStatus() == DouDiZhuActorRoomState.READY ? DouDiZhuActorRoomState.NO_READY : DouDiZhuActorRoomState.READY);
 		String result = MapHelper.newInstance()
 				.put("clientNickName", clientSide.getNickname())
 				.put("status", clientSide.getStatus())
@@ -41,7 +41,7 @@ public class ServerEventListener_CODE_GAME_READY implements ServerEventListener 
 			allReady = false;
 		} else {
 			for (ClientSide client : room.getClientSideList()) {
-				if (client.getRole() == ClientRole.PLAYER && client.getStatus() != ClientStatus.READY) {
+				if (client.getRole() == BattleRoleType.PLAYER && client.getStatus() != DouDiZhuActorRoomState.READY) {
 					allReady = false;
 					break;
 				}
@@ -49,8 +49,8 @@ public class ServerEventListener_CODE_GAME_READY implements ServerEventListener 
 		}
 
 		for (ClientSide client : room.getClientSideList()) {
-			if (client.getRole() == ClientRole.PLAYER) {
-				ChannelUtils.pushToClient(client.getChannel(), ClientEventCode.CODE_GAME_READY, result);
+			if (client.getRole() == BattleRoleType.PLAYER) {
+				ChannelUtils.pushToClient(client.getChannel(), BasicEventCode.CODE_GAME_READY, result);
 			}
 		}
 

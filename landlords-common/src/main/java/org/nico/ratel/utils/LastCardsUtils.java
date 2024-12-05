@@ -1,6 +1,6 @@
 package org.nico.ratel.utils;
 
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.games.poker.Poker;
 
 import java.util.*;
 
@@ -31,7 +31,7 @@ public class LastCardsUtils {
             List<Poker> pokerList = pokers.get(i);
             for(int a = 0; a < pokerList.size(); a++){
                 Poker poker = pokerList.get(a);
-                lastCardMap.put(poker.getLevel().getName(),(lastCardMap.get(poker.getLevel().getName())+1));
+                lastCardMap.put(poker.getDesc().getName(),(lastCardMap.get(poker.getDesc().getName())+1));
             }
         }
         for(int i = 0; i < defSort.size(); i++){

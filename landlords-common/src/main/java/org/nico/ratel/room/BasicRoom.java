@@ -1,7 +1,7 @@
 package org.nico.ratel.room;
 
 import org.nico.ratel.BattleType;
-import org.nico.ratel.client.BasicClient;
+import org.nico.ratel.clientactor.BasicActor;
 import org.nico.ratel.room.enums.RoomStatus;
 
 import java.util.LinkedList;
@@ -31,17 +31,17 @@ public abstract class BasicRoom {
     /**
      * 玩家字典
      */
-    private Map<Long, BasicClient> clientMap;
+    private Map<Long, BasicActor> clientMap;
 
     /**
      * 玩家列表
      */
-    private LinkedList<BasicClient> clientLinkedList;
+    private LinkedList<BasicActor> clientLinkedList;
 
     /**
      * 房间非游玩玩家
      */
-    private List<BasicClient> watcherList;
+    private List<BasicActor> watcherList;
 
     /**
      * 房间阶段状态
@@ -89,27 +89,27 @@ public abstract class BasicRoom {
         this.ownerId = ownerId;
     }
 
-    public Map<Long, BasicClient> getClientMap() {
+    public Map<Long, BasicActor> getClientMap() {
         return clientMap;
     }
 
-    public void setClientMap(Map<Long, BasicClient> clientMap) {
+    public void setClientMap(Map<Long, BasicActor> clientMap) {
         this.clientMap = clientMap;
     }
 
-    public LinkedList<BasicClient> getClientLinkedList() {
+    public LinkedList<BasicActor> getClientLinkedList() {
         return clientLinkedList;
     }
 
-    public void setClientLinkedList(LinkedList<BasicClient> clientLinkedList) {
+    public void setClientLinkedList(LinkedList<BasicActor> clientLinkedList) {
         this.clientLinkedList = clientLinkedList;
     }
 
-    public List<BasicClient> getWatcherList() {
+    public List<BasicActor> getWatcherList() {
         return watcherList;
     }
 
-    public void setWatcherList(List<BasicClient> watcherList) {
+    public void setWatcherList(List<BasicActor> watcherList) {
         this.watcherList = watcherList;
     }
 

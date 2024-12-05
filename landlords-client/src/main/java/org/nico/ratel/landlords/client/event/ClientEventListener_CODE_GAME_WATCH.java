@@ -4,8 +4,8 @@ import io.netty.channel.Channel;
 import org.nico.noson.Noson;
 import org.nico.noson.entity.NoType;
 import org.nico.ratel.landlords.client.entity.User;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
 
@@ -24,7 +24,7 @@ public class ClientEventListener_CODE_GAME_WATCH extends ClientEventListener {
         }
 
         Map<String, Object> wrapMap = MapHelper.parser(wrapData);
-        ClientEventCode rawCode = ClientEventCode.valueOf(wrapMap.get("code").toString());
+        BasicEventCode rawCode = BasicEventCode.valueOf(wrapMap.get("code").toString());
         Object rawData = wrapMap.get("data");
 
         switch (rawCode) {
@@ -128,7 +128,7 @@ public class ClientEventListener_CODE_GAME_WATCH extends ClientEventListener {
         User.INSTANCE.setWatching(false);
 
         // 退出watch展示
-        get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, "");
+        get(BasicEventCode.CODE_SHOW_OPTIONS).call(channel, "");
     }
 
     private void printGameResult(Object rawData, Channel channel) {

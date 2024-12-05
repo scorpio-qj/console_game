@@ -2,7 +2,7 @@ package org.nico.ratel.landlords.client.event;
 
 import io.netty.channel.Channel;
 import org.nico.ratel.landlords.client.entity.User;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
@@ -61,7 +61,7 @@ public class ClientEventListener_CODE_GAME_WATCH_SUCCESSFUL extends ClientEventL
 
         // 退出观战模式
         pushToServer(channel, ServerEventCode.CODE_GAME_WATCH_EXIT);
-        get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, "");
+        get(BasicEventCode.CODE_SHOW_OPTIONS).call(channel, "");
     }
 
     private void printCommandUsage() {

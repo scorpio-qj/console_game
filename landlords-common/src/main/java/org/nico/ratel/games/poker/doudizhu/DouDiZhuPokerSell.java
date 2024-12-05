@@ -1,23 +1,24 @@
-package org.nico.ratel.games.poker.doudizhu.entity;
+package org.nico.ratel.games.poker.doudizhu;
 
-import org.nico.ratel.games.poker.doudizhu.SellType;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuSellType;
 import org.nico.ratel.helper.PokerHelper;
 
 import java.util.List;
 
-public class PokerSell {
+public class DouDiZhuPokerSell {
 
 	private int score;
 
-	private SellType sellType;
+	private DouDiZhuSellType douDiZhuSellType;
 
 	private List<Poker> sellPokers;
 
 	private int coreLevel;
 
-	public PokerSell(SellType sellType, List<Poker> sellPokers, int coreLevel) {
-		this.score = PokerHelper.parseScore(sellType, coreLevel);
-		this.sellType = sellType;
+	public DouDiZhuPokerSell(DouDiZhuSellType douDiZhuSellType, List<Poker> sellPokers, int coreLevel) {
+		this.score = PokerHelper.parseScore(douDiZhuSellType, coreLevel);
+		this.douDiZhuSellType = douDiZhuSellType;
 		this.sellPokers = sellPokers;
 		this.coreLevel = coreLevel;
 	}
@@ -38,12 +39,12 @@ public class PokerSell {
 		this.score = score;
 	}
 
-	public final SellType getSellType() {
-		return sellType;
+	public final DouDiZhuSellType getSellType() {
+		return douDiZhuSellType;
 	}
 
-	public final void setSellType(SellType sellType) {
-		this.sellType = sellType;
+	public final void setSellType(DouDiZhuSellType douDiZhuSellType) {
+		this.douDiZhuSellType = douDiZhuSellType;
 	}
 
 	public final List<Poker> getSellPokers() {
@@ -56,7 +57,7 @@ public class PokerSell {
 
 	@Override
 	public String toString() {
-		return sellType + "\t| " + score + "\t|" + sellPokers;
+		return douDiZhuSellType + "\t| " + score + "\t|" + sellPokers;
 	}
 
 }

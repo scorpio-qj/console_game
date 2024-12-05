@@ -2,7 +2,7 @@ package org.nico.ratel.landlords.client.event;
 
 import java.util.Map;
 
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
 
@@ -15,6 +15,6 @@ public class ClientEventListener_CODE_ROOM_JOIN_FAIL_BY_INEXIST extends ClientEv
 		Map<String, Object> dataMap = MapHelper.parser(data);
 
 		SimplePrinter.printNotice("Join room failed. Room " + dataMap.get("roomId") + " doesn't exist!");
-		ClientEventListener.get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, data);
+		ClientEventListener.get(BasicEventCode.CODE_SHOW_OPTIONS).call(channel, data);
 	}
 }

@@ -1,7 +1,7 @@
 package org.nico.ratel.landlords.client.event;
 
 import org.nico.ratel.landlords.client.entity.User;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.print.SimplePrinter;
 import org.nico.ratel.print.SimpleWriter;
@@ -21,7 +21,7 @@ public class ClientEventListener_CODE_SHOW_OPTIONS_PVE extends ClientEventListen
 		String line = SimpleWriter.write(User.INSTANCE.getNickname(), "pve");
 
 		if(line.equalsIgnoreCase("back") ||  line.equalsIgnoreCase("b")) {
-			get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, data);
+			get(BasicEventCode.CODE_SHOW_OPTIONS).call(channel, data);
 			return;
 		}
 

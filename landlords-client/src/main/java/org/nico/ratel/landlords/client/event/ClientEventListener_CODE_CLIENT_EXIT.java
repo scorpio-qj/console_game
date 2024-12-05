@@ -3,7 +3,7 @@ package org.nico.ratel.landlords.client.event;
 import java.util.Map;
 
 import org.nico.ratel.landlords.client.SimpleClient;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
 
@@ -25,6 +25,6 @@ public class ClientEventListener_CODE_CLIENT_EXIT extends ClientEventListener {
 		}
 		SimplePrinter.printNotice(role + " left the room. Room disbanded!\n");
 		
-		get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, data);
+		get(BasicEventCode.CODE_SHOW_OPTIONS).call(channel, data);
 	}
 }

@@ -4,19 +4,19 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.nico.ratel.client.ClientSide;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.BasicEventCode;
 
 public interface RobotEventListener {
 
 	String LISTENER_PREFIX = "org.nico.ratel.landlords.server.robot.RobotEventListener_";
 
-	Map<ClientEventCode, RobotEventListener> LISTENER_MAP = new HashMap<>();
+	Map<BasicEventCode, RobotEventListener> LISTENER_MAP = new HashMap<>();
 
 	void call(ClientSide robot, String data);
 
 	@SuppressWarnings("unchecked")
-	static RobotEventListener get(ClientEventCode code) {
+	static RobotEventListener get(BasicEventCode code) {
 		RobotEventListener listener = null;
 		try {
 			if (RobotEventListener.LISTENER_MAP.containsKey(code)) {

@@ -6,8 +6,8 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.nico.ratel.utils.ChannelUtils;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.ServerEventCode;
 
 import io.netty.channel.Channel;
@@ -17,7 +17,7 @@ public abstract class ClientEventListener {
 
 	public abstract void call(Channel channel, String data);
 
-	public final static Map<ClientEventCode, ClientEventListener> LISTENER_MAP = new HashMap<>();
+	public final static Map<BasicEventCode, ClientEventListener> LISTENER_MAP = new HashMap<>();
 
 	private final static String LISTENER_PREFIX = "org.nico.ratel.landlords.client.event.ClientEventListener_";
 
@@ -32,7 +32,7 @@ public abstract class ClientEventListener {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static ClientEventListener get(ClientEventCode code) {
+	public static ClientEventListener get(BasicEventCode code) {
 		ClientEventListener listener;
 		try {
 			if (ClientEventListener.LISTENER_MAP.containsKey(code)) {

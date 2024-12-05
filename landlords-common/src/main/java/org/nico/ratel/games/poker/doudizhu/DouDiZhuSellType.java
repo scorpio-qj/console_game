@@ -1,6 +1,6 @@
 package org.nico.ratel.games.poker.doudizhu;
 
-public enum SellType {
+public enum DouDiZhuSellType {
 
 	ILLEGAL("非合法"),
 
@@ -41,7 +41,7 @@ public enum SellType {
 
 	private String msg;
 
-	SellType(String msg) {
+	DouDiZhuSellType(String msg) {
 		this.msg = msg;
 	}
 

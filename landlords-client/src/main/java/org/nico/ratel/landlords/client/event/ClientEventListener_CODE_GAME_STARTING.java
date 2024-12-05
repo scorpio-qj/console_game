@@ -3,8 +3,8 @@ package org.nico.ratel.landlords.client.event;
 import io.netty.channel.Channel;
 import org.nico.noson.Noson;
 import org.nico.noson.entity.NoType;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
 
@@ -28,7 +28,7 @@ public class ClientEventListener_CODE_GAME_STARTING extends ClientEventListener 
 		SimplePrinter.printNotice("Last cards are");
 		SimplePrinter.printNotice(map.containsKey("lastPokers")?map.get("lastPokers").toString():"");
 
-		get(ClientEventCode.CODE_GAME_LANDLORD_ELECT).call(channel, data);
+		get(BasicEventCode.CODE_GAME_LANDLORD_ELECT).call(channel, data);
 	}
 
 }

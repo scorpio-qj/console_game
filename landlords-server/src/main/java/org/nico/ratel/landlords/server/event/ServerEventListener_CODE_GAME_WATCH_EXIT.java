@@ -1,6 +1,6 @@
 package org.nico.ratel.landlords.server.event;
 
-import org.nico.ratel.client.ClientSide;
+import org.nico.ratel.clientactor.ClientSide;
 import org.nico.ratel.room.Room;
 import org.nico.ratel.print.SimplePrinter;
 import org.nico.ratel.landlords.server.ServerContains;

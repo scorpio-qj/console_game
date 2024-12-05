@@ -7,7 +7,7 @@ import java.util.Objects;
 import org.nico.noson.Noson;
 import org.nico.noson.entity.NoType;
 import org.nico.ratel.landlords.client.SimpleClient;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
+import org.nico.ratel.games.poker.Poker;
 import org.nico.ratel.helper.MapHelper;
 import org.nico.ratel.print.SimplePrinter;
 

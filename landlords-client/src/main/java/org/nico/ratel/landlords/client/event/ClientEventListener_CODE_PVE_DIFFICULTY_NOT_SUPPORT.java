@@ -1,6 +1,6 @@
 package org.nico.ratel.landlords.client.event;
 
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.print.SimplePrinter;
 
 import io.netty.channel.Channel;
@@ -10,7 +10,7 @@ public class ClientEventListener_CODE_PVE_DIFFICULTY_NOT_SUPPORT extends ClientE
 	@Override
 	public void call(Channel channel, String data) {
 		SimplePrinter.printNotice("The current difficulty is not supported, please pay attention to the following.\n");
-		get(ClientEventCode.CODE_SHOW_OPTIONS_PVE).call(channel, data);
+		get(BasicEventCode.CODE_SHOW_OPTIONS_PVE).call(channel, data);
 	}
 
 

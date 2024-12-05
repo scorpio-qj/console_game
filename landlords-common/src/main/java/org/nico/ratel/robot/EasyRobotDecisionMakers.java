@@ -3,10 +3,10 @@ package org.nico.ratel.robot;
 import java.util.List;
 import java.util.Random;
 
-import org.nico.ratel.client.ClientSide;
-import org.nico.ratel.games.poker.doudizhu.entity.Poker;
-import org.nico.ratel.games.poker.doudizhu.entity.PokerSell;
-import org.nico.ratel.games.poker.doudizhu.SellType;
+import org.nico.ratel.clientactor.ClientSide;
+import org.nico.ratel.games.poker.Poker;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
+import org.nico.ratel.games.poker.doudizhu.DouDiZhuSellType;
 import org.nico.ratel.helper.PokerHelper;
 
 /**
@@ -18,32 +18,32 @@ public class EasyRobotDecisionMakers extends AbstractRobotDecisionMakers {
 	private static Random random = new Random();
 
 	@Override
-	public PokerSell howToPlayPokers(PokerSell lastPokerSell, ClientSide robot) {
-		if (lastPokerSell != null && lastPokerSell.getSellType() == SellType.KING_BOMB) {
+	public DouDiZhuPokerSell howToPlayPokers(DouDiZhuPokerSell lastDouDiZhuPokerSell, ClientSide robot) {
+		if (lastDouDiZhuPokerSell != null && lastDouDiZhuPokerSell.getSellType() == DouDiZhuSellType.KING_BOMB) {
 			return null;
 		}
 
-		List<PokerSell> sells = PokerHelper.parsePokerSells(robot.getPokers());
-		if (lastPokerSell == null) {
+		List<DouDiZhuPokerSell> sells = PokerHelper.parsePokerSells(robot.getPokers());
+		if (lastDouDiZhuPokerSell == null) {
 			return sells.get(random.nextInt(sells.size()));
 		}
 
-		for (PokerSell sell : sells) {
-			if (sell.getSellType() == lastPokerSell.getSellType()) {
-				if (sell.getScore() > lastPokerSell.getScore() && sell.getSellPokers().size() == lastPokerSell.getSellPokers().size()) {
+		for (DouDiZhuPokerSell sell : sells) {
+			if (sell.getSellType() == lastDouDiZhuPokerSell.getSellType()) {
+				if (sell.getScore() > lastDouDiZhuPokerSell.getScore() && sell.getSellPokers().size() == lastDouDiZhuPokerSell.getSellPokers().size()) {
 					return sell;
 				}
 			}
 		}
-		if (lastPokerSell.getSellType() != SellType.BOMB) {
-			for (PokerSell sell : sells) {
-				if (sell.getSellType() == SellType.BOMB) {
+		if (lastDouDiZhuPokerSell.getSellType() != DouDiZhuSellType.BOMB) {
+			for (DouDiZhuPokerSell sell : sells) {
+				if (sell.getSellType() == DouDiZhuSellType.BOMB) {
 					return sell;
 				}
 			}
 		}
-		for (PokerSell sell : sells) {
-			if (sell.getSellType() == SellType.KING_BOMB) {
+		for (DouDiZhuPokerSell sell : sells) {
+			if (sell.getSellType() == DouDiZhuSellType.KING_BOMB) {
 				return sell;
 			}
 		}
@@ -52,9 +52,9 @@ public class EasyRobotDecisionMakers extends AbstractRobotDecisionMakers {
 
 	@Override
 	public int getLandlordScore(List<Poker> leftPokers, List<Poker> rightPokers, List<Poker> myPokers) {
-		List<PokerSell> leftSells = PokerHelper.parsePokerSells(leftPokers);
-		List<PokerSell> mySells = PokerHelper.parsePokerSells(myPokers);
-		List<PokerSell> rightSells = PokerHelper.parsePokerSells(rightPokers);
+		List<DouDiZhuPokerSell> leftSells = PokerHelper.parsePokerSells(leftPokers);
+		List<DouDiZhuPokerSell> mySells = PokerHelper.parsePokerSells(myPokers);
+		List<DouDiZhuPokerSell> rightSells = PokerHelper.parsePokerSells(rightPokers);
 		int expectedScore = 0;
 		if (mySells.size() > leftSells.size()) {
 			++expectedScore;

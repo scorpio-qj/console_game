@@ -9,7 +9,7 @@ import org.nico.ratel.utils.ChannelUtils;
 import org.nico.ratel.landlords.client.entity.User;
 import org.nico.ratel.landlords.client.event.ClientEventListener;
 import org.nico.ratel.msg.Msg;
-import org.nico.ratel.client.enums.ClientEventCode;
+import org.nico.ratel.BasicEventCode;
 import org.nico.ratel.ServerEventCode;
 import org.nico.ratel.print.SimplePrinter;
 import org.nico.ratel.utils.JsonUtils;
@@ -25,13 +25,13 @@ public class WebsocketTransferHandler extends SimpleChannelInboundHandler<TextWe
 		if(msg.getInfo() != null && ! msg.getInfo().isEmpty()) {
 			SimplePrinter.printNotice(msg.getInfo());
 		}
-		ClientEventCode code = ClientEventCode.valueOf(msg.getCode());
+		BasicEventCode code = BasicEventCode.valueOf(msg.getCode());
 		if (User.INSTANCE.isWatching()) {
 			Map<String, Object> wrapMap = new HashMap<>(3);
 			wrapMap.put("code", code);
 			wrapMap.put("data", msg.getData());
 
-			ClientEventListener.get(ClientEventCode.CODE_GAME_WATCH).call(ctx.channel(), JsonUtils.toJson(wrapMap));
+			ClientEventListener.get(BasicEventCode.CODE_GAME_WATCH).call(ctx.channel(), JsonUtils.toJson(wrapMap));
 		} else {
 			ClientEventListener.get(code).call(ctx.channel(), msg.getData());
 		}
