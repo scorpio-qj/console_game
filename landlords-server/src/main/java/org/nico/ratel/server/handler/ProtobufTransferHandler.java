@@ -57,6 +57,7 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 		}
 	}
 
+
 	@Override
 	public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
 		if (evt instanceof IdleStateEvent) {

@@ -40,6 +40,11 @@ public class ChannelUtils {
 		}
 	}
 
+	public static ChannelFuture pushToServer(Channel channel,ServerEventCode code){
+		return pushToServer(channel,code,null);
+	}
+
+
 	public static ChannelFuture pushToServer(Channel channel, ServerEventCode code, String data) {
 		if (channel.pipeline().get("ws") != null) {
 			Msg msg = new Msg();

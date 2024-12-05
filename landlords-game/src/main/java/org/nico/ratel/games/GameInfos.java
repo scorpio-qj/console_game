@@ -1,14 +1,11 @@
 package org.nico.ratel.games;
 
 import org.nico.ratel.commons.BasicGameRule;
-import org.nico.ratel.commons.ClientEventCode;
-import org.nico.ratel.commons.event.BasicClientEventListener;
+import org.nico.ratel.commons.event.BasicClientEventHandler;
 import org.nico.ratel.commons.event.ClientEvents;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuGameRule;
 import org.nico.ratel.games.poker.doudizhu.event.code.DouDiZhuClientEventCode;
 
-import java.io.File;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,7 +76,7 @@ public enum GameInfos {
         }
     }
 
-    public static BasicClientEventListener getEventListener(int gameId,String event){
+    public static BasicClientEventHandler getEventListener(int gameId, String event) {
 
         if(!idMap.containsKey(gameId)){
             return null;
@@ -93,8 +90,9 @@ public enum GameInfos {
                 return item.getEventListener();
             }
 
-            System.out.println("");
         }
+
+        return null;
 
     }
 

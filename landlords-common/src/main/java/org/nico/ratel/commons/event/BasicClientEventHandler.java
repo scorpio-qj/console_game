@@ -7,7 +7,7 @@ import io.netty.channel.Channel;
  * @create 2024/12/5
  * @desc
  */
-public abstract class BasicClientEventListener {
+public abstract class BasicClientEventHandler {
 
     public abstract void call(Channel channel, String data);
 }

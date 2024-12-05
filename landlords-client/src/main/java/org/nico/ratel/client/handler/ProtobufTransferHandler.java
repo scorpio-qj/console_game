@@ -1,6 +1,8 @@
 package org.nico.ratel.client.handler;
 
 import org.nico.noson.Noson;
+import org.nico.ratel.client.event.BasicClientEventCode;
+import org.nico.ratel.client.event.ClientEventNavigation;
 import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.client.entity.User;
@@ -38,6 +40,13 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 				ClientEventListener.get(code).call(ctx.channel(), clientTransferData.getData());
 			}
 		}
+	}
+
+	@Override
+	public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+
+		ClientEventNavigation.getClientEventListener(BasicClientEventCode.CLIENT_DISCONNECT.name()).call(ctx.channel(),"disconnect");
+
 	}
 
 	@Override

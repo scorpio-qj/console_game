@@ -3,7 +3,7 @@ package org.nico.ratel.games.poker.doudizhu.event.client;
 import org.nico.noson.Noson;
 import org.nico.ratel.client.SimpleClient;
 import org.nico.ratel.commons.ServerEventCode;
-import org.nico.ratel.commons.event.BasicClientEventListener;
+import org.nico.ratel.commons.event.BasicClientEventHandler;
 import org.nico.ratel.commons.print.SimplePrinter;
 
 import io.netty.channel.Channel;
@@ -11,7 +11,7 @@ import io.netty.channel.Channel;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClientEventListener_CODE_CLIENT_CONNECT extends BasicClientEventListener {
+public class ClientEventListener_CODE_CLIENT_CONNECT extends BasicClientEventHandler {
 
 	@Override
 	public void call(Channel channel, String data) {

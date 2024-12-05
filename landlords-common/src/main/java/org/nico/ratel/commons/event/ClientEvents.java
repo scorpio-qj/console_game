@@ -7,7 +7,7 @@ package org.nico.ratel.commons.event;
  */
 public interface ClientEvents {
 
-    BasicClientEventListener getEventListener();
+    BasicClientEventHandler getEventListener();
 
     String getEventName();
 }

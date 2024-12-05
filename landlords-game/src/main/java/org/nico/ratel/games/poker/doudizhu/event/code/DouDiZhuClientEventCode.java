@@ -1,9 +1,8 @@
 package org.nico.ratel.games.poker.doudizhu.event.code;
 
-import org.nico.ratel.commons.event.BasicClientEventListener;
+import org.nico.ratel.commons.event.BasicClientEventHandler;
 import org.nico.ratel.commons.event.ClientEvents;
 import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener_CODE_CLIENT_CONNECT;
-import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener_CODE_GAME_OVER;
 
 import java.io.Serializable;
 
@@ -81,9 +80,9 @@ public enum DouDiZhuClientEventCode implements ClientEvents, Serializable {
 
     private String msg;
 
-    private BasicClientEventListener listener;
+    private BasicClientEventHandler listener;
 
-    DouDiZhuClientEventCode(String msg,BasicClientEventListener listener) {
+    DouDiZhuClientEventCode(String msg, BasicClientEventHandler listener) {
         this.msg = msg;
         this.listener=listener;
     }
@@ -92,12 +91,12 @@ public enum DouDiZhuClientEventCode implements ClientEvents, Serializable {
         return msg;
     }
 
-    public final void setMsg(String msg) {
-        this.msg = msg;
+    public BasicClientEventHandler getListener() {
+        return listener;
     }
 
     @Override
-    public BasicClientEventListener getEventListener() {
+    public BasicClientEventHandler getEventListener() {
         return listener;
     }
 

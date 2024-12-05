@@ -1,9 +1,8 @@
 package org.nico.ratel.client.event;
 
-import org.nico.ratel.commons.event.BasicClientEventListener;
+import org.nico.ratel.commons.event.BasicClientEventHandler;
 import org.nico.ratel.games.GameInfos;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -17,28 +16,28 @@ public class ClientEventNavigation {
     /**
      * 公共命令字典
      */
-    public static final Map<String, BasicClientEventListener> commonEvents=new ConcurrentHashMap<>();
+    public static final Map<String, BasicClientEventHandler> commonEvents=new ConcurrentHashMap<>();
 
     /**
      * 游戏命令字典 key gameId
      */
-    public static final Map<Integer,Map<String,BasicClientEventListener>> gameEvents=new ConcurrentHashMap<>();
+    public static final Map<Integer,Map<String, BasicClientEventHandler>> gameEvents=new ConcurrentHashMap<>();
 
 
 
-    public static BasicClientEventListener getClientEventListener(String event){
+    public static BasicClientEventHandler getClientEventListener(String event){
          return getClientEventListener(0,event);
     }
 
 
-    public static BasicClientEventListener getClientEventListener(int gameId,String event){
+    public static BasicClientEventHandler getClientEventListener(int gameId, String event)  {
 
         if(gameId==0){
             if(commonEvents.containsKey(event)){
                 return commonEvents.get(event);
             }else {
 
-                BasicClientEventListener listener=BasicClientEventCode.getEventListener(event);
+                BasicClientEventHandler listener=BasicClientEventCode.getEventListener(event);
                 if(listener!=null){
                     commonEvents.putIfAbsent(event,listener);
                 }
@@ -50,7 +49,7 @@ public class ClientEventNavigation {
                 return gameEvents.get(gameId).get(event);
             }else{
 
-                BasicClientEventListener listener=GameInfos.getEventListener(gameId,event);
+                BasicClientEventHandler listener=GameInfos.getEventListener(gameId,event);
                 if(listener!=null){
                     synchronized (gameEvents){
                         if(!gameEvents.containsKey(gameId)){
