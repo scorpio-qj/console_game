@@ -7,14 +7,15 @@ import io.netty.channel.Channel;
  */
 public abstract class BasicActor {
 
-    private long id;
+    protected long id;
 
-    private String nickName;
+    protected String nickName;
 
-    private transient Channel channel;
+    protected transient Channel channel;
 
-    private String version;
+    protected String version;
 
+    public abstract int getActorType();
 
     public long getId() {
         return id;

@@ -1,6 +1,7 @@
 package org.nico.ratel.client.event;
 
-import org.nico.ratel.commons.event.BasicClientEventHandler;
+import org.nico.ratel.commons.event.BasicEventCode;
+import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.games.GameInfos;
 
 import java.util.Map;
@@ -14,55 +15,51 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ClientEventNavigation {
 
     /**
-     * 公共命令字典
+     * 游戏命令字典 key为gameId 公共命令gameId=0
      */
-    public static final Map<String, BasicClientEventHandler> commonEvents=new ConcurrentHashMap<>();
-
-    /**
-     * 游戏命令字典 key gameId
-     */
-    public static final Map<Integer,Map<String, BasicClientEventHandler>> gameEvents=new ConcurrentHashMap<>();
+    public static final Map<Integer,Map<String, BasicEventHandler>> events=new ConcurrentHashMap<>();
 
 
+    static {
 
-    public static BasicClientEventHandler getClientEventListener(String event){
-         return getClientEventListener(0,event);
+         for(GameInfos info:GameInfos.values()){
+             events.put(info.getGameId(),new ConcurrentHashMap<>());
+         }
+         events.put(0,new ConcurrentHashMap<>());
+
     }
 
 
-    public static BasicClientEventHandler getClientEventListener(int gameId, String event)  {
+    public static BasicEventHandler getClientEventHandler(String event){
+         return getClientEventHandler(0,event);
+    }
 
+
+    public static BasicEventHandler getClientEventHandler(int gameId, String event)  {
+
+
+        if(!events.containsKey(gameId)){
+            return null;
+        }
+
+        Map<String,BasicEventHandler> handlerMap=events.get(gameId);
+
+        if(handlerMap.containsKey(event)){
+            return handlerMap.get(event);
+        }
         if(gameId==0){
-            if(commonEvents.containsKey(event)){
-                return commonEvents.get(event);
-            }else {
-
-                BasicClientEventHandler listener=BasicClientEventCode.getEventListener(event);
-                if(listener!=null){
-                    commonEvents.putIfAbsent(event,listener);
-                }
-                return listener;
+            BasicEventHandler handler=BasicEventCode.getEventHandler(event);
+            if(handler!=null){
+                handlerMap.putIfAbsent(event,handler);
             }
+            return handler;
+        }else {
 
-        }else{
-            if(gameEvents.containsKey(gameId) && gameEvents.get(gameId).containsKey(event)){
-                return gameEvents.get(gameId).get(event);
-            }else{
-
-                BasicClientEventHandler listener=GameInfos.getEventListener(gameId,event);
-                if(listener!=null){
-                    synchronized (gameEvents){
-                        if(!gameEvents.containsKey(gameId)){
-                            gameEvents.put(gameId,new ConcurrentHashMap<>());
-                        }
-                        if(!gameEvents.get(gameId).containsKey(event)){
-                            gameEvents.get(gameId).put(event,listener);
-                        }
-                    }
-                }
-                return listener;
-
+            BasicEventHandler handler=GameInfos.getHandler(gameId,event);
+            if(handler!=null){
+                handlerMap.putIfAbsent(event,handler);
             }
+            return handler;
 
         }
 

@@ -8,15 +8,18 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.netty.channel.Channel;
+import org.nico.ratel.commons.clientactor.BasicActor;
 import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.room.Room;
+import org.nico.ratel.server.utils.IdUtils;
 
 public class ServerContains {
 
-	/**
-	 * Server port
-	 */
-	public static int port = 1024;
+
+	public static final Map<String ,Long> CHANNEL_ID_MAP=new ConcurrentHashMap<>();
+
+	public static final Map<Long, BasicActor> CLIENT_MAP=new ConcurrentHashMap<>();
 
 	/**
 	 * The map of server side
@@ -28,7 +31,6 @@ public class ServerContains {
 	 */
 	public final static Map<Integer, ClientSide> CLIENT_SIDE_MAP = new ConcurrentSkipListMap<>();
 
-	public final static Map<String, Integer> CHANNEL_ID_MAP = new ConcurrentHashMap<>();
 
 	private final static AtomicInteger CLIENT_ATOMIC_ID = new AtomicInteger(1);
 
@@ -69,5 +71,16 @@ public class ServerContains {
 
 	public static Room addRoom(Room room) {
 		return ROOM_MAP.put(room.getId(), room);
+	}
+
+
+	public static long getClientId(Channel channel){
+		String text = channel.id().asLongText();
+		Long clientId = CHANNEL_ID_MAP.get(text);
+		if (null == clientId) {
+			clientId = IdUtils.getId();
+			CHANNEL_ID_MAP.put(text,clientId);
+		}
+		return clientId;
 	}
 }

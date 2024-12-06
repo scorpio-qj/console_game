@@ -4,20 +4,38 @@ import java.util.*;
 
 public class FeaturesHelper {
 
-    public final static String VERSION_1_3_0 = "v1.3.0";
-    public final static String READY = "READY";
-    private final static Map<String, List<String>> FEATURES = new HashMap<>();
+    public static final  String VERSION = "v0.0.1";
+
+    private static final  Map<String, List<Features>> FEATURES = new HashMap<>();
 
     static{
-        FEATURES.put(VERSION_1_3_0, Collections.singletonList(READY));
+        FEATURES.put(VERSION, Collections.singletonList(Features.READY));
     }
 
-    public static boolean supported(String clientVersion, String feature){
-        List<String> features = FEATURES.get(clientVersion);
+
+    /**
+     * 版本是否包含某个功能
+     * @param clientVersion
+     * @param feature
+     * @return
+     */
+    public static boolean supported(String clientVersion, Features feature){
+        List<Features> features = FEATURES.get(clientVersion);
         if (Objects.isNull(features) || Objects.isNull(feature)){
             return false;
         }
-        return features.contains(feature.toUpperCase(Locale.ROOT));
+        return features.contains(feature);
+    }
+
+    /**
+     * 功能类型
+     */
+    public enum Features{
+
+        //准备
+        READY,
+
+
     }
 
 }

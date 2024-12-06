@@ -177,7 +177,7 @@ public class ServerEventListener_CODE_GAME_POKER_PLAY implements ServerEventList
 
 		boolean supportReady = true;
 		for (ClientSide client : room.getClientSideList()) {
-			if (client.getRole() == BattleRoleType.ROBOT || ! FeaturesHelper.supported(client.getVersion(), FeaturesHelper.READY)) {
+			if (client.getRole() == BattleRoleType.ROBOT || ! FeaturesHelper.supported(client.getVersion(), FeaturesHelper.Features.READY)) {
 				supportReady = false;
 				break;
 			}

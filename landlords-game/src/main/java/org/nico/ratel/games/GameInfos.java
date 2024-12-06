@@ -1,10 +1,12 @@
 package org.nico.ratel.games;
 
 import org.nico.ratel.commons.BasicGameRule;
-import org.nico.ratel.commons.event.BasicClientEventHandler;
-import org.nico.ratel.commons.event.ClientEvents;
+import org.nico.ratel.commons.event.BasicEventHandler;
+import org.nico.ratel.commons.event.Events;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuGameRule;
 import org.nico.ratel.games.poker.doudizhu.event.code.DouDiZhuClientEventCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,9 +41,9 @@ public enum GameInfos {
 
     private BasicGameRule gameRule;
 
-    private Class<? extends ClientEvents> clazz;
+    private Class<? extends Events> clazz;
 
-    GameInfos(int gameId, int gameType, int gameSubType, BasicGameRule gameRule,Class<? extends ClientEvents> clazz) {
+    GameInfos(int gameId, int gameType, int gameSubType, BasicGameRule gameRule,Class<? extends Events> clazz) {
         this.gameId = gameId;
         this.gameType = gameType;
         this.gameSubType = gameSubType;
@@ -64,35 +66,73 @@ public enum GameInfos {
         return (T)gameRule;
     }
 
-    public Class<? extends ClientEvents> getClazz() {
+    public Class<? extends Events> getClazz() {
         return clazz;
     }
 
+    private static final Logger LOGGER= LoggerFactory.getLogger(GameInfos.class);
+
+    /**
+     * 游戏idMap
+     */
     private static final Map<Integer,GameInfos> idMap=new HashMap<>();
+
+    /**
+     * 游戏处理类
+     */
+    private static final Map<Integer,Map<String,BasicEventHandler>> gameHandlers=new HashMap<>();
 
     static {
         for(GameInfos info:GameInfos.values()){
             idMap.put(info.getGameId(),info);
+            gameHandlers.put(info.getGameId(),new HashMap<>());
         }
     }
 
-    public static BasicClientEventHandler getEventListener(int gameId, String event) {
+    /**
+     * 为事件注册handler
+     * @param gameId
+     * @param name
+     * @param handler
+     */
+    public static void registerGameHandler(int gameId,String name,BasicEventHandler handler){
+        if(!gameHandlers.containsKey(gameId)){
+            return;
+        }
+        if(!validEventName(gameId,name)){
+            return;
+        }
+        gameHandlers.get(gameId).put(name,handler);
+
+    }
+
+    public static BasicEventHandler getHandler(int gameId,String name){
+
+        if(!gameHandlers.containsKey(gameId)){
+            return null;
+        }
+        return gameHandlers.get(gameId).get(name);
+
+    }
+
+
+    public static boolean validEventName(int gameId, String event) {
 
         if(!idMap.containsKey(gameId)){
-            return null;
+            return false;
         }
         Class<?> clazz=idMap.get(gameId).getClazz();
 
-        ClientEvents[] events= (ClientEvents[]) clazz.getEnumConstants();
-        for(ClientEvents item:events){
+        Events[] events= (Events[]) clazz.getEnumConstants();
+        for(Events item:events){
 
             if(item.getEventName().equals(event)){
-                return item.getEventListener();
+                return true;
             }
 
         }
 
-        return null;
+        return false;
 
     }
 
