@@ -11,18 +11,11 @@ import java.util.Map;
  * @create 2024/12/5
  * @desc
  */
-public enum BasicEventCode implements Events {
+public enum BasicEventCode implements EventCode {
 
 
 
-    SC_CONNECT("SC_CONNECT",2,"客户端连接成功",0),
-
-    SC_DISCONNECT("SC_DISCONNECT",2,"客户端断开连接",0),
-
-    SC_KICK("SC_KICK",2,"客户端被踢出",0),
-
-
-    //------------------------------------------------------------------------------------------------------//
+    CS_HEAD_BEAT("CS_HEAD_BEAT",1,"客户端心跳包",0),
 
     CS_EXIT("CS_EXIT",1,"玩家退出",0),
 
@@ -32,16 +25,34 @@ public enum BasicEventCode implements Events {
 
     CS_SET_NICKNAME("CS_SET_NICKNAME",1,"设置昵称",0),
 
-    CS_HEAD_BEAT("CS_HEAD_BEAT",1,"客户端心跳",0),
+    //------------------------------------------------------------------------------------------------------//
 
 
+
+
+    //------------------------------------------------------------------------------------------------------//
+
+    SC_CONNECT("SC_CONNECT",3,"客户端连接成功",0),
+
+    SC_DISCONNECT("SC_DISCONNECT",3,"客户端断开连接",0),
+
+    SC_KICK("SC_KICK",3,"客户端被踢出",0),
+
+    SC_SET_NICKNAME("SC_SET_NICKNAME",3,"设置昵称",0),
+
+
+    //------------------------------------------------------------------------------------------------------//
+
+    S_READ_IDLE_STATE_TIME_OUT("S_READ_IDLE_STATE_TIME_OUT",4,"读数据超时",0),
 
     ;
 
     /**
      * 消息方向
      * 1 client to server
-     * 2 server to client
+     * 2 client inner
+     * 3 server to client
+     * 4 server inner
      */
     private int dir;
 
@@ -62,13 +73,6 @@ public enum BasicEventCode implements Events {
         return dir;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public String getName() {
-        return name;
-    }
 
     public int getGameId() {
         return gameId;
@@ -104,6 +108,11 @@ public enum BasicEventCode implements Events {
 
     @Override
     public String getEventName() {
-        return getName();
+        return name;
+    }
+
+    @Override
+    public String getEventDesc() {
+        return desc;
     }
 }

@@ -1,6 +1,7 @@
 package org.nico.ratel.commons.event;
 
 import io.netty.channel.Channel;
+import org.nico.ratel.commons.clientactor.BasicActor;
 
 /**
  * @author 柴奇君
@@ -9,5 +10,12 @@ import io.netty.channel.Channel;
  */
 public abstract class BasicEventHandler {
 
-    public abstract void call(Channel channel, String data);
+    public void call(Channel channel, String data){
+        throw new RuntimeException("客户端需要实现具体消息处理逻辑");
+    }
+
+    public void call(BasicActor actor,String data){
+        throw new RuntimeException("客户端需要实现具体消息处理逻辑");
+    }
+
 }

@@ -1,7 +1,7 @@
 package org.nico.ratel.games.poker.doudizhu.event.code;
 
 import org.nico.ratel.commons.event.BasicEventHandler;
-import org.nico.ratel.commons.event.Events;
+import org.nico.ratel.commons.event.EventCode;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @create 2024/12/5
  * @desc
  */
-public enum DouDiZhuClientEventCode implements Events, Serializable {
+public enum DouDiZhuClientEventCode implements EventCode, Serializable {
 
 
     CODE_CLIENT_NICKNAME_SET("设置昵称",new ClientEventListener_CODE_CLIENT_CONNECT()),
@@ -86,7 +86,7 @@ public enum DouDiZhuClientEventCode implements Events, Serializable {
         this.listener=listener;
     }
 
-    public final String getMsg() {
+    public final String getEventDesc() {
         return msg;
     }
 

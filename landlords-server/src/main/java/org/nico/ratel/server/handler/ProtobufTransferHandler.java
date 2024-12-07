@@ -2,12 +2,11 @@ package org.nico.ratel.server.handler;
 
 import org.nico.ratel.commons.clientactor.BasicActor;
 import org.nico.ratel.commons.clientactor.PlayerActor;
+import org.nico.ratel.commons.event.BasicEventCode;
+import org.nico.ratel.commons.event.BasicEventHandler;
+import org.nico.ratel.commons.event.EventCode;
 import org.nico.ratel.commons.utils.ChannelUtils;
-import org.nico.ratel.commons.clientactor.ClientSide;
 import org.nico.ratel.commons.proto.ServerTransferData.ServerTransferDataProtoc;
-import org.nico.ratel.commons.ClientEventCode;
-import org.nico.ratel.commons.BattleRoleType;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
 import org.nico.ratel.commons.ServerEventCode;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.server.ServerContains;
@@ -18,10 +17,12 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
+import org.nico.ratel.server.event.ServerEventNavigation;
 import org.nico.ratel.server.utils.ChannelAttributeKey;
 import org.nico.ratel.server.utils.ChannelAttributeUtil;
 
-import java.util.Base64;
+import java.util.Objects;
+
 
 public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 
@@ -49,8 +50,8 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 
 		SimplePrinter.serverLog("Has client connect to the server: " + clientId);
 
-		ChannelUtils.pushToClient(channel, ClientEventCode.CODE_CLIENT_CONNECT, String.valueOf(clientId));
-		ChannelUtils.pushToClient(channel, ClientEventCode.CODE_CLIENT_NICKNAME_SET, null);
+		ChannelUtils.pushToClient(channel, BasicEventCode.SC_CONNECT, String.valueOf(clientId));
+		ChannelUtils.pushToClient(channel, BasicEventCode.SC_SET_NICKNAME, null);
 	}
 
 	@Override
@@ -61,12 +62,13 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		if (msg instanceof ServerTransferDataProtoc) {
-			ServerTransferDataProtoc serverTransferData = (ServerTransferDataProtoc) msg;
-			ServerEventCode code = ServerEventCode.valueOf(serverTransferData.getCode());
-			if (code != ServerEventCode.CODE_CLIENT_HEAD_BEAT) {
+			ServerTransferDataProtoc sd = (ServerTransferDataProtoc) msg;
+			EventCode eventCode=ServerEventNavigation.getEventCode(sd.getGameId(),sd.getCode());
+			//如果不为心跳包
+			if (eventCode!=BasicEventCode.CS_HEAD_BEAT){
 				BasicActor client = ServerContains.CLIENT_MAP.get(ServerContains.getClientId(ctx.channel()));
-				SimplePrinter.serverLog(client.getId() + " | " + client.getNickName() + " do:" + code.getMsg());
-				ServerEventListener.get(code).call(client, serverTransferData.getData());
+				SimplePrinter.serverLog(client.getId() + " | " + client.getNickName() + " do:" + eventCode.getEventDesc());
+				ServerEventNavigation.getServerEventHandler(sd.getGameId(), sd.getCode()).call(client, sd.getData());
 			}
 		}
 	}
@@ -94,7 +96,7 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 		BasicActor client = ServerContains.CLIENT_MAP.get(clientId);
 		if (client != null) {
 			SimplePrinter.serverLog("Has client exit to the server：" + clientId + " | " + client.getNickName());
-			ServerEventListener.get(ServerEventCode.CODE_CLIENT_OFFLINE).call(client, null);
+			ServerEventNavigation.getServerEventHandler(BasicEventCode.S_READ_IDLE_STATE_TIME_OUT.getEventName()).call(client,null);
 		}
 	}
 }

@@ -70,7 +70,7 @@ public enum ClientEventCode implements Serializable {
 
 	private String msg;
 
-	private ClientEventCode(String msg) {
+	ClientEventCode(String msg) {
 		this.msg = msg;
 	}
 

@@ -2,7 +2,7 @@ package org.nico.ratel.games;
 
 import org.nico.ratel.commons.BasicGameRule;
 import org.nico.ratel.commons.event.BasicEventHandler;
-import org.nico.ratel.commons.event.Events;
+import org.nico.ratel.commons.event.EventCode;
 import org.nico.ratel.games.poker.doudizhu.DouDiZhuGameRule;
 import org.nico.ratel.games.poker.doudizhu.event.code.DouDiZhuClientEventCode;
 import org.slf4j.Logger;
@@ -41,9 +41,9 @@ public enum GameInfos {
 
     private BasicGameRule gameRule;
 
-    private Class<? extends Events> clazz;
+    private Class<? extends EventCode> clazz;
 
-    GameInfos(int gameId, int gameType, int gameSubType, BasicGameRule gameRule,Class<? extends Events> clazz) {
+    GameInfos(int gameId, int gameType, int gameSubType, BasicGameRule gameRule,Class<? extends EventCode> clazz) {
         this.gameId = gameId;
         this.gameType = gameType;
         this.gameSubType = gameSubType;
@@ -66,7 +66,7 @@ public enum GameInfos {
         return (T)gameRule;
     }
 
-    public Class<? extends Events> getClazz() {
+    public Class<? extends EventCode> getClazz() {
         return clazz;
     }
 
@@ -99,7 +99,7 @@ public enum GameInfos {
         if(!gameHandlers.containsKey(gameId)){
             return;
         }
-        if(!validEventName(gameId,name)){
+        if(getEventCode(gameId,name)==null){
             return;
         }
         gameHandlers.get(gameId).put(name,handler);
@@ -116,25 +116,27 @@ public enum GameInfos {
     }
 
 
-    public static boolean validEventName(int gameId, String event) {
+    public static EventCode getEventCode(int gameId, String event) {
 
         if(!idMap.containsKey(gameId)){
-            return false;
+            return null;
         }
         Class<?> clazz=idMap.get(gameId).getClazz();
 
-        Events[] events= (Events[]) clazz.getEnumConstants();
-        for(Events item:events){
+        EventCode[] events= (EventCode[]) clazz.getEnumConstants();
+        for(EventCode item:events){
 
             if(item.getEventName().equals(event)){
-                return true;
+                return item;
             }
 
         }
 
-        return false;
+        return null;
 
     }
+
+
 
 
 

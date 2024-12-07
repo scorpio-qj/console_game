@@ -5,7 +5,9 @@ package org.nico.ratel.commons.event;
  * @create 2024/12/6
  * @desc
  */
-public interface Events {
+public interface EventCode {
 
     String getEventName();
+
+    String getEventDesc();
 }

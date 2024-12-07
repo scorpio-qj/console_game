@@ -54,7 +54,7 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 		if (evt instanceof IdleStateEvent) {
 			IdleStateEvent event = (IdleStateEvent) evt;
 			if (event.state() == IdleState.WRITER_IDLE) {
-				ChannelUtils.pushToServer(ctx.channel(), ServerEventCode.CODE_CLIENT_HEAD_BEAT, "heartbeat");
+				ChannelUtils.pushToServer(ctx.channel(), BasicEventCode.CS_HEAD_BEAT, "heartbeat");
 			}
 		}
 	}

@@ -10,7 +10,7 @@ import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
 
 import java.util.Map;
 
-public class ClientBasicHandler__DISCONNECT extends BasicEventHandler {
+public class ClientBasicHandler_DISCONNECT extends BasicEventHandler {
 
     @Override
     public void call(Channel channel, String data) {

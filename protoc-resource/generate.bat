@@ -1,2 +1,2 @@
-protoc3 -I=. --java_out=../landlords-common/src/main/java/org/nico/ratel/proto/  ./ClientTransferDataProtoc.proto
+protoc3 -I=. --java_out=./proto/  ./ClientTransferDataProtoc.proto
 pause

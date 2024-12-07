@@ -4,6 +4,7 @@ import io.netty.channel.Channel;
 import org.nico.noson.Noson;
 import org.nico.ratel.client.SimpleClient;
 import org.nico.ratel.commons.ServerEventCode;
+import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.commons.utils.ChannelUtils;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class ClientBasicHandler__CONNECT extends BasicEventHandler {
+public class ClientBasicHandler_CONNECT extends BasicEventHandler {
 
 
     @Override
@@ -22,6 +23,6 @@ public class ClientBasicHandler__CONNECT extends BasicEventHandler {
 
         Map<String, Object> infos = new HashMap<>();
         infos.put("version", SimpleClient.VERSION);
-        ChannelUtils.pushToServer(channel, ServerEventCode.CODE_CLIENT_INFO_SET, Noson.reversal(infos));
+        ChannelUtils.pushToServer(channel, BasicEventCode.CS_SET_INFO, Noson.reversal(infos));
     }
 }

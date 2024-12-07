@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package org.nico.ratel.landlords.entity;
 
-option java_package = "org.nico.ratel.landlords.proto";
+option java_package = "org.nico.ratel.commons.proto";
 option java_outer_classname = "ServerTransferData";
 
 message ServerTransferDataProtoc{
@@ -12,4 +12,6 @@ message ServerTransferDataProtoc{
 	string data = 2;
 	
 	string info = 3;
+
+	int32 gameId=4;
 }
