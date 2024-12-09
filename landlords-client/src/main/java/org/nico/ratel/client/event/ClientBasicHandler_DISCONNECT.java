@@ -4,6 +4,7 @@ import io.netty.channel.Channel;
 import org.nico.ratel.client.SimpleClient;
 import org.nico.ratel.client.entity.User;
 import org.nico.ratel.commons.ClientEventCode;
+import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.commons.print.SimplePrinter;
@@ -27,6 +28,6 @@ public class ClientBasicHandler_DISCONNECT extends BasicEventHandler {
         }
         SimplePrinter.printNotice(role + " left the room. Room disbanded!\n");
 
-        ClientEventListener.get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, data);
+        ClientEventNavigation.getClientEventHandler(BasicEventCode.SC_SHOW_GLOBAL_OPTIONS.getEventName()).call(channel,data);
     }
 }

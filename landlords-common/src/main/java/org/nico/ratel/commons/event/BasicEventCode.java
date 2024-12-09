@@ -25,10 +25,14 @@ public enum BasicEventCode implements EventCode {
 
     CS_SET_NICKNAME("CS_SET_NICKNAME",1,"设置昵称",0),
 
+    CS_GET_GAME_LIST("CS_GET_GAME_LIST",1,"获取游戏列表",0),
+
     //------------------------------------------------------------------------------------------------------//
 
 
     C_GAME_WATCH("C_GAME_WATCH",2,"观战处理",0),
+
+    C_SHOW_OPTION_SETTING("C_SHOW_OPTION_SETTING",2,"所有设置选项",0),
 
     //------------------------------------------------------------------------------------------------------//
 
@@ -42,12 +46,16 @@ public enum BasicEventCode implements EventCode {
 
     SC_PLAYER_EXIT("SC_PLAYER_EXIT",3,"客户端退出",0),
 
-    SC_SHOW_GLOBAL_OPTIONS("SC_SHOW_GLOBAL_OPTIONS",2,"游戏开始界面",0),
+    SC_SHOW_GLOBAL_OPTIONS("SC_SHOW_GLOBAL_OPTIONS",3,"游戏开始界面",0),
+
+    SC_GAME_LIST("SC_GAME_LIST",3,"游戏列表",0),
 
 
     //------------------------------------------------------------------------------------------------------//
 
     S_READ_IDLE_STATE_TIME_OUT("S_READ_IDLE_STATE_TIME_OUT",4,"读数据超时",0),
+
+    S_PLAYER_EXIT("S_PLAYER_EXIT",4,"玩家退出",0),
 
     ;
 
