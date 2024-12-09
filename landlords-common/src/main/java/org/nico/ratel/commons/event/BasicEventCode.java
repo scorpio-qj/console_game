@@ -28,7 +28,7 @@ public enum BasicEventCode implements EventCode {
     //------------------------------------------------------------------------------------------------------//
 
 
-
+    C_GAME_WATCH("C_GAME_WATCH",2,"观战处理",0),
 
     //------------------------------------------------------------------------------------------------------//
 
@@ -39,6 +39,10 @@ public enum BasicEventCode implements EventCode {
     SC_KICK("SC_KICK",3,"客户端被踢出",0),
 
     SC_SET_NICKNAME("SC_SET_NICKNAME",3,"设置昵称",0),
+
+    SC_PLAYER_EXIT("SC_PLAYER_EXIT",3,"客户端退出",0),
+
+    SC_SHOW_GLOBAL_OPTIONS("SC_SHOW_GLOBAL_OPTIONS",2,"游戏开始界面",0),
 
 
     //------------------------------------------------------------------------------------------------------//
@@ -69,14 +73,6 @@ public enum BasicEventCode implements EventCode {
         this.gameId=gameId;
     }
 
-    public int getDir() {
-        return dir;
-    }
-
-
-    public int getGameId() {
-        return gameId;
-    }
 
     private static final Logger LOGGER= LoggerFactory.getLogger(BasicEventCode.class);
 
@@ -114,5 +110,10 @@ public enum BasicEventCode implements EventCode {
     @Override
     public String getEventDesc() {
         return desc;
+    }
+
+    @Override
+    public int getEventGameId() {
+        return gameId;
     }
 }

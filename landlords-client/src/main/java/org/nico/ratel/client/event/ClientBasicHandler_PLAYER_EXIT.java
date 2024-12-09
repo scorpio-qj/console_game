@@ -1,20 +1,24 @@
 package org.nico.ratel.client.event;
 
 import io.netty.channel.Channel;
-import org.nico.ratel.client.SimpleClient;
 import org.nico.ratel.client.entity.User;
-import org.nico.ratel.commons.ClientEventCode;
+import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.commons.print.SimplePrinter;
-import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
 
 import java.util.Map;
 
-public class ClientBasicHandler_DISCONNECT extends BasicEventHandler {
+/**
+ * @author 柴奇君
+ * @create 2024/12/9
+ * @desc
+ */
+public class ClientBasicHandler_PLAYER_EXIT extends BasicEventHandler {
 
     @Override
     public void call(Channel channel, String data) {
+
         Map<String, Object> map = MapHelper.parser(data);
 
         Integer exitClientId = (Integer) map.get("exitClientId");
@@ -27,6 +31,7 @@ public class ClientBasicHandler_DISCONNECT extends BasicEventHandler {
         }
         SimplePrinter.printNotice(role + " left the room. Room disbanded!\n");
 
-        ClientEventListener.get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, data);
+        //todo 回到初始页，显示所有选项
+        ClientEventNavigation.getClientEventHandler(BasicEventCode.SC_SHOW_GLOBAL_OPTIONS.getEventName()).call(channel, data);
     }
 }

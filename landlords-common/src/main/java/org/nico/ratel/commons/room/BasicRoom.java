@@ -29,6 +29,11 @@ public abstract class BasicRoom {
     private long ownerId;
 
     /**
+     * 所属游戏id
+     */
+    protected int gameId;
+
+    /**
      * 玩家字典
      */
     private Map<Long, BasicActor> clientMap;
@@ -135,5 +140,13 @@ public abstract class BasicRoom {
 
     public void setCreateTime(long createTime) {
         this.createTime = createTime;
+    }
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 }

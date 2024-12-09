@@ -3,13 +3,15 @@ package org.nico.ratel.client.entity;
 public class User {
     public static final User INSTANCE = new User();
 
+    private long id;
+
+    private String nickname = "player";
+
     /** 是否游戏中 */
     private volatile boolean isPlaying = false;
 
     /** 是否观战中 */
     private volatile boolean isWatching = false;
-
-    private String nickname = "player";
 
     private User() {}
 
@@ -35,5 +37,13 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

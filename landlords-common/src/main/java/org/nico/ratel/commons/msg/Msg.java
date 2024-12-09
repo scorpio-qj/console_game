@@ -4,6 +4,8 @@ public class Msg {
 
     private String code;
 
+    private int gameId;
+
     private String data;
 
     private String info;
@@ -30,5 +32,13 @@ public class Msg {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 }

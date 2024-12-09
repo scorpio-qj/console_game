@@ -25,19 +25,19 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 	public void channelRead(ChannelHandlerContext ctx, Object msg) {
 
 		if (msg instanceof ClientTransferDataProtoc) {
-			ClientTransferDataProtoc clientTransferData = (ClientTransferDataProtoc) msg;
-			if (!clientTransferData.getInfo().isEmpty()) {
-				SimplePrinter.printNotice(clientTransferData.getInfo());
+			ClientTransferDataProtoc ct = (ClientTransferDataProtoc) msg;
+			if (!ct.getInfo().isEmpty()) {
+				SimplePrinter.printNotice(ct.getInfo());
 			}
-			ClientEventCode code = ClientEventCode.valueOf(clientTransferData.getCode());
+
 			if (User.INSTANCE.isWatching()) {
 				Map<String, Object> wrapMap = new HashMap<>(3);
-				wrapMap.put("code", code);
-				wrapMap.put("data", clientTransferData.getData());
+				wrapMap.put("code", ct.getCode());
+				wrapMap.put("data", ct.getData());
 
-				ClientEventListener.get(ClientEventCode.CODE_GAME_WATCH).call(ctx.channel(), Noson.reversal(wrapMap));
+				ClientEventNavigation.getClientEventHandler(BasicEventCode.C_GAME_WATCH.getEventName()).call(ctx.channel(),Noson.reversal(wrapMap));
 			} else {
-				ClientEventListener.get(code).call(ctx.channel(), clientTransferData.getData());
+				ClientEventNavigation.getClientEventHandler(ct.getGameId(),ct.getCode()).call(ctx.channel(),ct.getData());
 			}
 		}
 	}

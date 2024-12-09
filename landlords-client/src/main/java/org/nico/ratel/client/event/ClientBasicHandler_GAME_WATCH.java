@@ -1,29 +1,36 @@
-package org.nico.ratel.games.poker.doudizhu.event.client;
+package org.nico.ratel.client.event;
 
 import io.netty.channel.Channel;
 import org.nico.noson.Noson;
 import org.nico.noson.entity.NoType;
 import org.nico.ratel.client.entity.User;
-import org.nico.ratel.games.poker.Poker;
 import org.nico.ratel.commons.ClientEventCode;
+import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.commons.print.SimplePrinter;
+import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
+import org.omg.CORBA.DATA_CONVERSION;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
-public class ClientEventListener_CODE_GAME_WATCH extends ClientEventListener {
+/**
+ * @author 柴奇君
+ * @create 2024/12/9
+ * @desc
+ */
+public class ClientBasicHandler_GAME_WATCH extends BasicEventHandler {
 
     @Override
-    public void call(Channel channel, String wrapData) {
+    public void call(Channel channel, String data) {
         // 退出观战模式后不处理观战请求
         if (!User.INSTANCE.isWatching()) {
             return;
         }
 
-        Map<String, Object> wrapMap = MapHelper.parser(wrapData);
+        Map<String, Object> wrapMap = MapHelper.parser(data);
         ClientEventCode rawCode = ClientEventCode.valueOf(wrapMap.get("code").toString());
         Object rawData = wrapMap.get("data");
 

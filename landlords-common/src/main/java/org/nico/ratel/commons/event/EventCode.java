@@ -10,4 +10,6 @@ public interface EventCode {
     String getEventName();
 
     String getEventDesc();
+
+    int getEventGameId();
 }

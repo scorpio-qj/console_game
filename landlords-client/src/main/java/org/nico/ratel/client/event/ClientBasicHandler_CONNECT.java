@@ -3,6 +3,7 @@ package org.nico.ratel.client.event;
 import io.netty.channel.Channel;
 import org.nico.noson.Noson;
 import org.nico.ratel.client.SimpleClient;
+import org.nico.ratel.client.entity.User;
 import org.nico.ratel.commons.ServerEventCode;
 import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
@@ -19,7 +20,7 @@ public class ClientBasicHandler_CONNECT extends BasicEventHandler {
     @Override
     public void call(Channel channel, String data) {
         SimplePrinter.printNotice("Connected to server. Welcome to ratel!");
-        SimpleClient.id = Long.parseLong(data);
+        User.INSTANCE.setId(Long.parseLong(data));
 
         Map<String, Object> infos = new HashMap<>();
         infos.put("version", SimpleClient.VERSION);

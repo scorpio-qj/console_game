@@ -1,5 +1,6 @@
 package org.nico.ratel.server;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -11,15 +12,32 @@ import java.util.concurrent.atomic.AtomicInteger;
 import io.netty.channel.Channel;
 import org.nico.ratel.commons.clientactor.BasicActor;
 import org.nico.ratel.commons.clientactor.ClientSide;
+import org.nico.ratel.commons.room.BasicRoom;
 import org.nico.ratel.commons.room.Room;
 import org.nico.ratel.server.utils.IdUtils;
 
 public class ServerContains {
 
-
+	/**
+	 * channel对应玩家id
+	 */
 	public static final Map<String ,Long> CHANNEL_ID_MAP=new ConcurrentHashMap<>();
 
+	/**
+	 * 玩家id对应实体
+	 */
 	public static final Map<Long, BasicActor> CLIENT_MAP=new ConcurrentHashMap<>();
+
+	/**
+	 * 游戏房间 gameId->rooms
+	 */
+	public static final Map<Integer, List<BasicRoom>> GAME_ROOMS =new ConcurrentHashMap<>();
+
+	/**
+	 * 所有房间 roomId->room
+	 */
+	public static final Map<Long,BasicRoom> ROOMS =new ConcurrentHashMap<>();
+
 
 	/**
 	 * The map of server side
@@ -83,4 +101,10 @@ public class ServerContains {
 		}
 		return clientId;
 	}
+
+	public static BasicRoom getRoom(long roomId){
+
+		return ROOMS.get(roomId);
+	}
+
 }

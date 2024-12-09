@@ -21,7 +21,6 @@ import org.nico.ratel.commons.utils.StreamUtils;
 
 public class SimpleClient {
 
-	public static long id = -1;
 
 	public final static String VERSION = FeaturesHelper.VERSION;
 

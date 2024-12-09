@@ -24,14 +24,14 @@ public class ChannelUtils {
 			if (channel.pipeline().get("ws") != null) {
 				Msg msg = new Msg();
 				msg.setCode(code.getEventName());
+				msg.setGameId(code.getEventGameId());
 				msg.setData(data);
 				msg.setInfo(info);
 				channel.writeAndFlush(new TextWebSocketFrame(JsonUtils.toJson(msg)));
 			} else {
 				ClientTransferData.ClientTransferDataProtoc.Builder clientTransferData = ClientTransferData.ClientTransferDataProtoc.newBuilder();
-				if (code != null) {
-					clientTransferData.setCode(code.getEventName());
-				}
+				clientTransferData.setCode(code.getEventName());
+				clientTransferData.setGameId(code.getEventGameId());
 				if (data != null) {
 					clientTransferData.setData(data);
 				}
@@ -52,13 +52,13 @@ public class ChannelUtils {
 		if (channel.pipeline().get("ws") != null) {
 			Msg msg = new Msg();
 			msg.setCode(code.getEventName());
+			msg.setGameId(code.getEventGameId());
 			msg.setData(data);
 			return channel.writeAndFlush(new TextWebSocketFrame(JsonUtils.toJson(msg)));
 		} else {
 			ServerTransferData.ServerTransferDataProtoc.Builder serverTransferData = ServerTransferData.ServerTransferDataProtoc.newBuilder();
-			if (code != null) {
-				serverTransferData.setCode(code.getEventName());
-			}
+			serverTransferData.setCode(code.getEventName());
+			serverTransferData.setGameId(code.getEventGameId());
 			if (data != null) {
 				serverTransferData.setData(data);
 			}

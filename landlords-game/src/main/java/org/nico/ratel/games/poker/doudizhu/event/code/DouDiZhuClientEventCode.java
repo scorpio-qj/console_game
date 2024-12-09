@@ -90,6 +90,11 @@ public enum DouDiZhuClientEventCode implements EventCode, Serializable {
         return msg;
     }
 
+    @Override
+    public int getEventGameId() {
+        return 0;
+    }
+
     public BasicEventHandler getListener() {
         return listener;
     }

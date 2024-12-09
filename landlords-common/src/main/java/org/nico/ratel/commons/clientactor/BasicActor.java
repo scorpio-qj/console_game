@@ -15,6 +15,10 @@ public abstract class BasicActor {
 
     protected String version;
 
+    protected int gameId;
+
+    protected long roomId;
+
     public abstract int getActorType();
 
     public long getId() {
@@ -47,5 +51,21 @@ public abstract class BasicActor {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
+    }
+
+    public long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
     }
 }
