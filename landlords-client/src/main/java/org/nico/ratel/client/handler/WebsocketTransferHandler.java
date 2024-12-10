@@ -6,7 +6,6 @@ import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.nico.ratel.client.entity.User;
-import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.msg.Msg;
 import org.nico.ratel.commons.ClientEventCode;

@@ -8,8 +8,7 @@ import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.commons.print.SimplePrinter;
-import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
-import org.omg.CORBA.DATA_CONVERSION;
+import org.nico.ratel.games.poker.common.Poker;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -106,14 +105,16 @@ public class ClientBasicHandler_GAME_WATCH extends BasicEventHandler {
         Map<String, Object> map = MapHelper.parser(rawData.toString());
 
         printNoticeWithTime("Player [" + map.get("landlord") + "] has become the landlord and gotten three extra cards:");
-        SimplePrinter.printPokers(Noson.convert(map.get("additionalPokers"), new NoType<List<Poker>>() {}));
+        //todo 暂时注释
+        //SimplePrinter.printPokers(Noson.convert(map.get("additionalPokers"), new NoType<List<Poker>>() {}));
     }
 
     private void printPlayPokers(Object rawData) {
         Map<String, Object> map = MapHelper.parser(rawData.toString());
 
         printNoticeWithTime("Player [" + map.get("clientNickname") + "] played:");
-        SimplePrinter.printPokers(Noson.convert(map.get("pokers"), new NoType<List<Poker>>() {}));
+        //todo 暂时注释
+        //SimplePrinter.printPokers(Noson.convert(map.get("pokers"), new NoType<List<Poker>>() {}));
     }
 
     private void printPlayPass(Object rawData) {
@@ -134,8 +135,8 @@ public class ClientBasicHandler_GAME_WATCH extends BasicEventHandler {
         // 修改玩家是否观战状态
         User.INSTANCE.setWatching(false);
 
-        // 退出watch展示
-        ClientEventListener.get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, "");
+        // 退出watch展示 todo 暂时注释
+        //ClientEventListener.get(ClientEventCode.CODE_SHOW_OPTIONS).call(channel, "");
     }
 
     private void printGameResult(Object rawData, Channel channel) {

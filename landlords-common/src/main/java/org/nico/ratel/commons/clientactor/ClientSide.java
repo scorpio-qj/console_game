@@ -1,16 +1,13 @@
 package org.nico.ratel.commons.clientactor;
 
-import java.util.List;
 
 import org.nico.ratel.commons.BattleRoleType;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuActorRoomState;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuRoleType;
-
 import io.netty.channel.Channel;
-import org.nico.ratel.games.poker.Poker;
+
 
 public class ClientSide {
 
+	/*
 	private int id;
 
 	private int roomId;
@@ -197,5 +194,7 @@ public class ClientSide {
 		ClientSide other = (ClientSide) obj;
 		return id == other.id;
 	}
+
+	*/
 
 }

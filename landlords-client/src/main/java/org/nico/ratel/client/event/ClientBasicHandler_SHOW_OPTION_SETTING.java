@@ -2,14 +2,11 @@ package org.nico.ratel.client.event;
 
 import io.netty.channel.Channel;
 import org.nico.ratel.client.entity.User;
-import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
-import org.nico.ratel.commons.helper.PokerHelper;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.commons.print.SimpleWriter;
 import org.nico.ratel.commons.utils.OptionsUtils;
-import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
 
 public class ClientBasicHandler_SHOW_OPTION_SETTING extends BasicEventHandler {
 

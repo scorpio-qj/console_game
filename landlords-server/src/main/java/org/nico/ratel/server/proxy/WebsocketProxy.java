@@ -16,7 +16,6 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.nico.ratel.commons.print.SimplePrinter;
-import org.nico.ratel.commons.robot.RobotDecisionMakers;
 import org.nico.ratel.server.handler.WebsocketTransferHandler;
 
 import java.net.InetSocketAddress;

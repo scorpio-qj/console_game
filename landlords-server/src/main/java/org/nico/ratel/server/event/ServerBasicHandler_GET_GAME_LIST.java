@@ -1,6 +1,7 @@
 package org.nico.ratel.server.event;
 
 import com.sun.org.apache.regexp.internal.RE;
+import org.nico.noson.Noson;
 import org.nico.ratel.commons.clientactor.BasicActor;
 import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
@@ -24,14 +25,13 @@ public class ServerBasicHandler_GET_GAME_LIST extends BasicEventHandler {
         for(GameInfos info: GameInfos.values()){
 
             Map<String,Object> map=new HashMap<>();
-            map.put("num",info.ordinal());
             map.put("gameId",info.getGameId());
             map.put("name",info.name());
             gameList.add(map);
 
         }
         String result=MapHelper.newInstance().put("gameList",gameList).json();
-        ChannelUtils.pushToClient(actor.getChannel(), BasicEventCode.SC_GAME_LIST, result);
+        ChannelUtils.pushToClient(actor.getChannel(), BasicEventCode.SC_GAME_LIST, Noson.reversal(result));
 
 
     }

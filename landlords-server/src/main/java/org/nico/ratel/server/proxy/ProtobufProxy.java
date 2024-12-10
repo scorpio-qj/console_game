@@ -17,10 +17,8 @@ import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.nico.ratel.commons.proto.ServerTransferData;
 import org.nico.ratel.commons.print.SimplePrinter;
-import org.nico.ratel.commons.robot.RobotDecisionMakers;
 import org.nico.ratel.server.ServerContains;
 import org.nico.ratel.server.handler.SecondProtobufCodec;
-import org.nico.ratel.server.timer.RoomClearTask;
 import org.nico.ratel.server.handler.ProtobufTransferHandler;
 
 import java.net.InetSocketAddress;

@@ -1,14 +1,11 @@
 package org.nico.ratel.client.event;
 
 import io.netty.channel.Channel;
-import org.nico.ratel.client.SimpleClient;
 import org.nico.ratel.client.entity.User;
-import org.nico.ratel.commons.ClientEventCode;
 import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.commons.print.SimplePrinter;
-import org.nico.ratel.games.poker.doudizhu.event.client.ClientEventListener;
 
 import java.util.Map;
 

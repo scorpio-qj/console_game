@@ -8,12 +8,11 @@ import java.util.concurrent.ConcurrentSkipListMap;
 
 import org.nico.ratel.commons.BattleType;
 import org.nico.ratel.commons.clientactor.ClientSide;
-import org.nico.ratel.games.poker.Poker;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
 import org.nico.ratel.commons.room.enums.RoomStatus;
 
 public class Room {
 
+	/*
 	private int id;
 
 	private String roomOwner;
@@ -44,7 +43,7 @@ public class Room {
 
 	private int firstSellClient;
 
-	/** 观战者列表 */
+	//观察者列表
 	private List<ClientSide> watcherList = new ArrayList<>(5);
 
 	private int scoreRate = 1;
@@ -213,4 +212,6 @@ public class Room {
 	public List<ClientSide> getWatcherList() {
 		return watcherList;
 	}
+
+	*/
 }

@@ -8,25 +8,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.nico.ratel.games.poker.Poker;
-import org.nico.ratel.games.poker.PokerDesc;
-import org.nico.ratel.games.poker.PokerSuit;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuSellType;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
 import org.nico.ratel.commons.utils.ListUtils;
 
 public class PokerHelper {
 
-	/**
-	 * Print the type of poker style
-	 */
+	/*
+	//Print the type of poker style
 	public static int pokerPrinterType = 0;
 
 	public static int totalPrinters = 5;
 
-	/**
-	 * The list of all pokers, by 54
-	 */
+	//The list of all pokers, by 54
 	private static final List<Poker> basePokers = new ArrayList<>(54);
 
 	private static final Comparator<Poker> pokerComparator = (o1, o2) -> o1.getDesc().getLevel() - o2.getDesc().getLevel();
@@ -629,4 +621,6 @@ public class PokerHelper {
 		}
 		sellPokers_1.clear();
 	}
+	*/
+
 }

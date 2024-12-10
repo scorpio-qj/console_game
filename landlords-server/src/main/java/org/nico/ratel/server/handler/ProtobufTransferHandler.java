@@ -3,14 +3,11 @@ package org.nico.ratel.server.handler;
 import org.nico.ratel.commons.clientactor.BasicActor;
 import org.nico.ratel.commons.clientactor.PlayerActor;
 import org.nico.ratel.commons.event.BasicEventCode;
-import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.event.EventCode;
 import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.proto.ServerTransferData.ServerTransferDataProtoc;
-import org.nico.ratel.commons.ServerEventCode;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.server.ServerContains;
-import org.nico.ratel.server.event.ServerEventListener;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -20,8 +17,6 @@ import io.netty.handler.timeout.IdleStateEvent;
 import org.nico.ratel.server.event.ServerEventNavigation;
 import org.nico.ratel.server.utils.ChannelAttributeKey;
 import org.nico.ratel.server.utils.ChannelAttributeUtil;
-
-import java.util.Objects;
 
 
 public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
