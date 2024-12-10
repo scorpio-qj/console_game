@@ -32,7 +32,7 @@ public class ClientBasicHandler_GAME_LIST extends BasicEventHandler {
             FormatPrinter.printNotice(format, "NUM", "ID", "NAME");
             Map<Integer,Map<String,Object>> temp=new HashMap<>();
             for(int i=1;i<=gameList.size();i++){
-                Map<String,Object> game= gameList.get(i);
+                Map<String,Object> game= gameList.get(i-1);
                 temp.put(i,game);
                 FormatPrinter.printNotice(format, i, game.get("gameId"), game.get("name"));
             }

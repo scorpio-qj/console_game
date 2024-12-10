@@ -18,4 +18,19 @@ public abstract class BasicEventHandler {
         throw new RuntimeException("客户端需要实现具体消息处理逻辑");
     }
 
+    public void initHandler() {}
+
+    public static <T extends BasicEventHandler> T createHandler(Class<T> clazz) {
+        try{
+             T handler=clazz.newInstance();
+             handler.initHandler();
+             return handler;
+        }catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
 }

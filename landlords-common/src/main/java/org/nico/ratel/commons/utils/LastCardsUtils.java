@@ -1,11 +1,10 @@
 package org.nico.ratel.commons.utils;
 
-import org.nico.ratel.games.poker.Poker;
-
 import java.util.*;
 
 public class LastCardsUtils {
 
+    /*
     private static final List<String> defSort = new ArrayList(){{
         add("3");
         add("4");
@@ -62,4 +61,6 @@ public class LastCardsUtils {
         lastCardMap.put("X",0);
         return lastCardMap;
     }
+    */
+
 }

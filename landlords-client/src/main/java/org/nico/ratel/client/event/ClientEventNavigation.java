@@ -31,10 +31,39 @@ public class ClientEventNavigation {
          for(GameInfos info:GameInfos.values()){
              events.put(info.getGameId(),new ConcurrentHashMap<>());
          }
-         events.put(0,new ConcurrentHashMap<>());
+         Map<String,BasicEventHandler> baseHandler=new ConcurrentHashMap<>();
+         events.put(0,baseHandler);
+
+         //注册基础协议
+         registerBasicEvent(BasicEventCode.C_SHOW_OPTION_SETTING,ClientBasicHandler_SHOW_OPTION_SETTING.class);
+         registerBasicEvent(BasicEventCode.C_GAME_WATCH,ClientBasicHandler_GAME_WATCH.class);
+         registerBasicEvent(BasicEventCode.SC_GAME_LIST,ClientBasicHandler_GAME_LIST.class);
+         registerBasicEvent(BasicEventCode.SC_SET_NICKNAME,ClientBasicHandler_SET_NICKNAME.class);
+         registerBasicEvent(BasicEventCode.SC_CONNECT,ClientBasicHandler_CONNECT.class);
+         registerBasicEvent(BasicEventCode.SC_DISCONNECT,ClientBasicHandler_DISCONNECT.class);
+         //registerBasicEvent(BasicEventCode.SC_KICK,);
+         registerBasicEvent(BasicEventCode.SC_PLAYER_EXIT,ClientBasicHandler_PLAYER_EXIT.class);
+         registerBasicEvent(BasicEventCode.SC_SHOW_GLOBAL_OPTIONS,ClientBasicHandler_SHOW_GLOBAL_OPTIONS.class);
+         //for(BasicEventCode code :BasicEventCode.values()){
+         //    if(code.isClientEvent()){
+         //
+         //    }
+         //}
 
     }
 
+    public static <T extends BasicEventHandler> void registerBasicEvent(EventCode code,Class<T> hClazz){
+
+        T handler=BasicEventHandler.createHandler(hClazz);
+        if(handler==null){
+            return;
+        }
+        Map<String,BasicEventHandler> baseHandler=events.get(0);
+        if(code.isClientEvent()){
+            baseHandler.put(code.getEventName(),handler);
+        }
+
+    }
 
     public static BasicEventHandler getClientEventHandler(String event){
          return getClientEventHandler(0,event);
@@ -52,20 +81,15 @@ public class ClientEventNavigation {
         if(handlerMap.containsKey(event)){
             return handlerMap.get(event);
         }
-        if(gameId==0){
-            BasicEventHandler handler=BasicEventCode.getEventHandler(event);
-            if(handler!=null){
-                handlerMap.putIfAbsent(event,handler);
-                return handler;
-            }
-        }else {
 
+        if(gameId!=0){
             BasicEventHandler handler=GameInfos.getHandler(gameId,event);
             if(handler!=null){
                 handlerMap.putIfAbsent(event,handler);
                 return handler;
             }
         }
+
         return DEFAULT_EVENT_HANDLER;
 
 

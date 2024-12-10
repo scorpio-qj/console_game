@@ -25,7 +25,28 @@ public class ServerEventNavigation {
         for(GameInfos info:GameInfos.values()){
             events.put(info.getGameId(),new ConcurrentHashMap<>());
         }
-        events.put(0,new ConcurrentHashMap<>());
+        Map<String,BasicEventHandler> baseHandler=new ConcurrentHashMap<>();
+        events.put(0,baseHandler);
+        //注册基础协议
+        registerBasicEvent(BasicEventCode.S_PLAYER_EXIT,ServerBasicHandler_PLAYER_EXIT.class);
+        registerBasicEvent(BasicEventCode.S_READ_IDLE_STATE_TIME_OUT,ServerBasicHandler_READ_IDLE_STATE_TIME_OUT.class);
+        registerBasicEvent(BasicEventCode.CS_GET_GAME_LIST,ServerBasicHandler_GET_GAME_LIST.class);
+        registerBasicEvent(BasicEventCode.CS_SET_INFO,ServerBasicHandler_SET_INFO.class);
+        registerBasicEvent(BasicEventCode.CS_SET_NICKNAME,ServerBasicHandler_SET_NICKNAME.class);
+
+
+    }
+
+    public static <T extends BasicEventHandler> void registerBasicEvent(EventCode code,Class<T> hClazz){
+
+        T handler=BasicEventHandler.createHandler(hClazz);
+        if(handler==null){
+            return;
+        }
+        Map<String,BasicEventHandler> baseHandler=events.get(0);
+        if(code.isServerEvent()){
+            baseHandler.put(code.getEventName(),handler);
+        }
 
     }
 
@@ -47,13 +68,8 @@ public class ServerEventNavigation {
         if(handlerMap.containsKey(event)){
             return handlerMap.get(event);
         }
-        if(gameId==0){
-            BasicEventHandler handler= BasicEventCode.getEventHandler(event);
-            if(handler!=null){
-                handlerMap.putIfAbsent(event,handler);
-                return handler;
-            }
-        }else {
+
+        if(gameId!=0){
 
             BasicEventHandler handler=GameInfos.getHandler(gameId,event);
             if(handler!=null){

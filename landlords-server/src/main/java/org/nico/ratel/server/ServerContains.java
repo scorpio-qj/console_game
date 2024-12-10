@@ -65,12 +65,24 @@ public class ServerContains {
 	public final static ThreadPoolExecutor THREAD_EXCUTER = new ThreadPoolExecutor(500, 500, 0, TimeUnit.MILLISECONDS,
 			new LinkedBlockingQueue<Runnable>());
 
-	/**
-	 * Get room by id, with flush time
-	 *
-	 * @param id room id
-	 * @return
-	 */
+
+	public static long getClientId(Channel channel){
+		String text = channel.id().asLongText();
+		Long clientId = CHANNEL_ID_MAP.get(text);
+		if (null == clientId) {
+			clientId = IdUtils.getId();
+			CHANNEL_ID_MAP.put(text,clientId);
+		}
+		return clientId;
+	}
+
+	public static BasicRoom getRoom(long roomId){
+
+		return ROOMS.get(roomId);
+	}
+
+
+	/*
 	public static Room getRoom(int id) {
 		Room room = ROOM_MAP.get(id);
 		if (room != null) {
@@ -90,21 +102,7 @@ public class ServerContains {
 	public static Room addRoom(Room room) {
 		return ROOM_MAP.put(room.getId(), room);
 	}
+	*/
 
-
-	public static long getClientId(Channel channel){
-		String text = channel.id().asLongText();
-		Long clientId = CHANNEL_ID_MAP.get(text);
-		if (null == clientId) {
-			clientId = IdUtils.getId();
-			CHANNEL_ID_MAP.put(text,clientId);
-		}
-		return clientId;
-	}
-
-	public static BasicRoom getRoom(long roomId){
-
-		return ROOMS.get(roomId);
-	}
 
 }

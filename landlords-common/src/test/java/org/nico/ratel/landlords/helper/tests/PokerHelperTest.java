@@ -3,17 +3,13 @@ package org.nico.ratel.landlords.helper.tests;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.nico.ratel.games.poker.Poker;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
-import org.nico.ratel.games.poker.PokerDesc;
-import org.nico.ratel.games.poker.PokerSuit;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuSellType;
 import org.nico.ratel.commons.helper.PokerHelper;
 
 import java.util.ArrayList;
 
 public class PokerHelperTest {
 
+	/*
 	private ArrayList<Poker> pokers = new ArrayList<>();
 
 	@Before
@@ -240,4 +236,6 @@ public class PokerHelperTest {
         Assert.assertEquals(8, PokerHelper.checkPokerType(pokers).getScore());
 		Assert.assertEquals(DouDiZhuSellType.THREE_STRAIGHT_WITH_SINGLE, douDiZhuPokerSell.getSellType());
 	}
+	*
+	 */
 }

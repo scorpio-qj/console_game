@@ -16,7 +16,7 @@ public class DouDiZhuPokerSell {
 	private int coreLevel;
 
 	public DouDiZhuPokerSell(DouDiZhuSellType douDiZhuSellType, List<Poker> sellPokers, int coreLevel) {
-		this.score = PokerHelper.parseScore(douDiZhuSellType, coreLevel);
+		//this.score = PokerHelper.parseScore(douDiZhuSellType, coreLevel);
 		this.douDiZhuSellType = douDiZhuSellType;
 		this.sellPokers = sellPokers;
 		this.coreLevel = coreLevel;

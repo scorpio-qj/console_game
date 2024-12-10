@@ -5,13 +5,11 @@ import java.util.List;
 
 import org.junit.Test;
 import org.nico.ratel.commons.clientactor.ClientSide;
-import org.nico.ratel.games.poker.Poker;
-import org.nico.ratel.games.poker.doudizhu.DouDiZhuPokerSell;
-import org.nico.ratel.games.poker.PokerDesc;
-import org.nico.ratel.games.poker.PokerSuit;
+
 
 public class MediumRobotDecisionMakersTests {
 
+	/*
 	private List<Poker> buildPokers(String[] values){
 		List<Poker> pokers = new ArrayList<Poker>();
 		for(Object v: values) {
@@ -51,4 +49,6 @@ public class MediumRobotDecisionMakersTests {
 		//}
 		
 	}
+	*
+	 */
 }

@@ -30,8 +30,8 @@ public class ServerBasicHandler_GET_GAME_LIST extends BasicEventHandler {
             gameList.add(map);
 
         }
-        String result=MapHelper.newInstance().put("gameList",gameList).json();
-        ChannelUtils.pushToClient(actor.getChannel(), BasicEventCode.SC_GAME_LIST, Noson.reversal(result));
+        //String result=MapHelper.newInstance().put("gameList",gameList).json();
+        ChannelUtils.pushToClient(actor.getChannel(), BasicEventCode.SC_GAME_LIST, Noson.reversal(gameList));
 
 
     }

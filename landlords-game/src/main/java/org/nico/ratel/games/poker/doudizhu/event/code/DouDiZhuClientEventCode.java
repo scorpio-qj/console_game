@@ -15,31 +15,36 @@ public enum DouDiZhuClientEventCode implements EventCode, Serializable {
 
     ;
 
-    private String msg;
+    private int dir;
 
-    private BasicEventHandler listener;
+    private String desc;
 
-    DouDiZhuClientEventCode(String msg, BasicEventHandler listener) {
-        this.msg = msg;
-        this.listener=listener;
+    private String name;
+
+    private int gameId;
+
+    DouDiZhuClientEventCode(int dir, String desc, String name, int gameId) {
+        this.dir = dir;
+        this.desc = desc;
+        this.name = name;
+        this.gameId = gameId;
     }
 
-    public final String getEventDesc() {
-        return msg;
+    @Override
+    public String getEventDesc() {
+        return desc;
     }
 
     @Override
     public int getEventGameId() {
-        return 0;
+        return gameId;
     }
 
-    public BasicEventHandler getListener() {
-        return listener;
-    }
-
+    @Override
+    public int getEventDir() { return dir; }
 
     @Override
     public String getEventName() {
-        return name();
+        return name;
     }
 }

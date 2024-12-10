@@ -29,10 +29,11 @@ public enum BasicEventCode implements EventCode {
 
     //------------------------------------------------------------------------------------------------------//
 
+    S_READ_IDLE_STATE_TIME_OUT("S_READ_IDLE_STATE_TIME_OUT",2,"读数据超时",0),
 
-    C_GAME_WATCH("C_GAME_WATCH",2,"观战处理",0),
+    S_PLAYER_EXIT("S_PLAYER_EXIT",2,"玩家退出",0),
 
-    C_SHOW_OPTION_SETTING("C_SHOW_OPTION_SETTING",2,"所有设置选项",0),
+
 
     //------------------------------------------------------------------------------------------------------//
 
@@ -53,19 +54,12 @@ public enum BasicEventCode implements EventCode {
 
     //------------------------------------------------------------------------------------------------------//
 
-    S_READ_IDLE_STATE_TIME_OUT("S_READ_IDLE_STATE_TIME_OUT",4,"读数据超时",0),
+    C_GAME_WATCH("C_GAME_WATCH",4,"观战处理",0),
 
-    S_PLAYER_EXIT("S_PLAYER_EXIT",4,"玩家退出",0),
+    C_SHOW_OPTION_SETTING("C_SHOW_OPTION_SETTING",4,"所有设置选项",0),
 
     ;
 
-    /**
-     * 消息方向
-     * 1 client to server
-     * 2 client inner
-     * 3 server to client
-     * 4 server inner
-     */
     private int dir;
 
     private String desc;
@@ -124,4 +118,11 @@ public enum BasicEventCode implements EventCode {
     public int getEventGameId() {
         return gameId;
     }
+
+    @Override
+    public int getEventDir() {
+        return dir;
+    }
+
+
 }

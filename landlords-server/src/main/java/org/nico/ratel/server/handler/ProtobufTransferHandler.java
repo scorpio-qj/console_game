@@ -24,11 +24,10 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void handlerRemoved(ChannelHandlerContext ctx) {
 
-		BasicActor client=ServerContains.CLIENT_MAP.get(ChannelAttributeUtil.get(ctx.channel(),ChannelAttributeKey.CID));
-
-		SimplePrinter.serverLog("client " + client.getId() + "(" + client.getNickName() + ") disconnected");
-		clientOfflineEvent(ctx.channel());
-		ctx.channel().close();
+		//BasicActor client=ServerContains.CLIENT_MAP.get(ChannelAttributeUtil.get(ctx.channel(),ChannelAttributeKey.CID));
+		//SimplePrinter.serverLog("client " + client.getId() + "(" + client.getNickName() + ") disconnected");
+		//clientOfflineEvent(ctx.channel());
+		//ctx.channel().close();
 	}
 
 

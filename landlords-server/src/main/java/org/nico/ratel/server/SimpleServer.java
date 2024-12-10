@@ -1,29 +1,28 @@
 package org.nico.ratel.server;
 
 import org.nico.ratel.commons.ServerEventCode;
+import org.nico.ratel.server.proxy.ProtobufProxy;
+import org.nico.ratel.server.proxy.WebsocketProxy;
 
 public class SimpleServer {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		ServerEventCode code= ServerEventCode.valueOf("CODE_CLIENT_EXIT");
-		System.out.println(code);
 
-		/*
 		if (args != null && args.length > 1) {
 			if (args[0].equalsIgnoreCase("-p") || args[0].equalsIgnoreCase("-port")) {
-				ServerContains.port = Integer.parseInt(args[1]);
+				ServerConfig.port = Integer.parseInt(args[1]);
 			}
 		}
 		new Thread(() -> {
 			try {
-				new ProtobufProxy().start(ServerContains.port);
+				new ProtobufProxy().start(ServerConfig.port);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}).start();
-		new WebsocketProxy().start(ServerContains.port + 1);
-		*/
+		new WebsocketProxy().start(ServerConfig.port + 1);
+
 
 
 	}

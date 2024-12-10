@@ -52,13 +52,13 @@ public class ProtobufProxy implements Proxy{
             ChannelFuture f = bootstrap .bind().sync();
 
             SimplePrinter.serverLog("The protobuf server was successfully started on port " + port);
-            //Init robot.
-            RobotDecisionMakers.init();
 
-            ServerContains.THREAD_EXCUTER.execute(() -> {
-                Timer timer=new Timer();
-                timer.schedule(new RoomClearTask(), 0L, 3000L);
-            });
+            //todo 暂时注释
+            //RobotDecisionMakers.init();
+            //ServerContains.THREAD_EXCUTER.execute(() -> {
+            //    Timer timer=new Timer();
+            //    timer.schedule(new RoomClearTask(), 0L, 3000L);
+            //});
             f.channel().closeFuture().sync();
         } finally {
             parentGroup.shutdownGracefully();
