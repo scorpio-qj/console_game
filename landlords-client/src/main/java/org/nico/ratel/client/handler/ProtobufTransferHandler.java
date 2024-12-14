@@ -12,6 +12,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
 import io.netty.handler.timeout.IdleStateEvent;
+import org.nico.ratel.commons.utils.EventHandlerUtils;
+import org.nico.ratel.commons.utils.ProtoDataUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +34,15 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 				wrapMap.put("code", ct.getCode());
 				wrapMap.put("data", ct.getData());
 
-				ClientEventNavigation.getClientEventHandler(BasicEventCode.C_GAME_WATCH.getEventName()).call(ctx.channel(),Noson.reversal(wrapMap));
+				ClientEventNavigation.getClientEventHandler(BasicEventCode.C_GAME_WATCH.getEventName()).call(ctx.channel(), ProtoDataUtils.toString(wrapMap));
 			} else {
-				ClientEventNavigation.getClientEventHandler(ct.getGameId(),ct.getCode()).call(ctx.channel(),ct.getData());
+				EventHandlerUtils.SINGLE_EXECUTOR.execute(new Runnable() {
+					@Override
+					public void run() {
+						ClientEventNavigation.getClientEventHandler(ct.getGameId(),ct.getCode()).call(ctx.channel(),ct.getData());
+					}
+				});
+
 			}
 		}
 	}

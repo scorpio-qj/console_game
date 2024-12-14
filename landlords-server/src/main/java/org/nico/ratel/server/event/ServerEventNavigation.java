@@ -33,6 +33,7 @@ public class ServerEventNavigation {
         registerBasicEvent(BasicEventCode.CS_GET_GAME_LIST,ServerBasicHandler_GET_GAME_LIST.class);
         registerBasicEvent(BasicEventCode.CS_SET_INFO,ServerBasicHandler_SET_INFO.class);
         registerBasicEvent(BasicEventCode.CS_SET_NICKNAME,ServerBasicHandler_SET_NICKNAME.class);
+        registerBasicEvent(BasicEventCode.CS_GET_ROOM_LIST,ServerBasicHandler_GET_ROOM_LIST.class);
 
 
     }

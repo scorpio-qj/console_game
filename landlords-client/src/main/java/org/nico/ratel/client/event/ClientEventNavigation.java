@@ -37,13 +37,15 @@ public class ClientEventNavigation {
          //注册基础协议
          registerBasicEvent(BasicEventCode.C_SHOW_OPTION_SETTING,ClientBasicHandler_SHOW_OPTION_SETTING.class);
          registerBasicEvent(BasicEventCode.C_GAME_WATCH,ClientBasicHandler_GAME_WATCH.class);
+         registerBasicEvent(BasicEventCode.C_ROOM_OPTIONS,ClientBasicHandler_ROOM_OPTIONS.class);
          registerBasicEvent(BasicEventCode.SC_GAME_LIST,ClientBasicHandler_GAME_LIST.class);
          registerBasicEvent(BasicEventCode.SC_SET_NICKNAME,ClientBasicHandler_SET_NICKNAME.class);
          registerBasicEvent(BasicEventCode.SC_CONNECT,ClientBasicHandler_CONNECT.class);
          registerBasicEvent(BasicEventCode.SC_DISCONNECT,ClientBasicHandler_DISCONNECT.class);
-         //registerBasicEvent(BasicEventCode.SC_KICK,);
          registerBasicEvent(BasicEventCode.SC_PLAYER_EXIT,ClientBasicHandler_PLAYER_EXIT.class);
          registerBasicEvent(BasicEventCode.SC_SHOW_GLOBAL_OPTIONS,ClientBasicHandler_SHOW_GLOBAL_OPTIONS.class);
+         registerBasicEvent(BasicEventCode.SC_ROOM_LIST,ClientBasicHandler_ROOM_LIST.class);
+         //registerBasicEvent(BasicEventCode.SC_KICK,);
          //for(BasicEventCode code :BasicEventCode.values()){
          //    if(code.isClientEvent()){
          //

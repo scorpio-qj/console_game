@@ -1,5 +1,7 @@
 package org.nico.ratel.commons.room;
 
+import com.google.common.base.Strings;
+import org.nico.noson.entity.NoType;
 import org.nico.ratel.commons.BattleType;
 import org.nico.ratel.commons.clientactor.BasicActor;
 import org.nico.ratel.commons.room.enums.RoomStatus;
@@ -16,17 +18,17 @@ public abstract class BasicRoom {
     /**
      * 房间id
      */
-    private long roomId;
+    protected long roomId;
 
     /**
-     * 房间类型
+     * 房间名
      */
-    private int roomType;
+    protected String roomName;
 
     /**
      * 房主
      */
-    private long ownerId;
+    protected long ownerId;
 
     /**
      * 所属游戏id
@@ -69,6 +71,10 @@ public abstract class BasicRoom {
      */
     public abstract void update(int deltaTime);
 
+    public String getRoomName(){
+        return Strings.isNullOrEmpty(roomName) ? String.valueOf(roomId) : roomName;
+    }
+
 
     public long getRoomId() {
         return roomId;
@@ -78,13 +84,6 @@ public abstract class BasicRoom {
         this.roomId = roomId;
     }
 
-    public int getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(int roomType) {
-        this.roomType = roomType;
-    }
 
     public long getOwnerId() {
         return ownerId;
@@ -149,4 +148,6 @@ public abstract class BasicRoom {
     public void setGameId(int gameId) {
         this.gameId = gameId;
     }
+
+
 }

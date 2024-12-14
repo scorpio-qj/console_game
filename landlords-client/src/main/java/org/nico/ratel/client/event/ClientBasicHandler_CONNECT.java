@@ -9,6 +9,7 @@ import org.nico.ratel.commons.event.BasicEventCode;
 import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.commons.utils.ChannelUtils;
+import org.nico.ratel.commons.utils.ProtoDataUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +23,7 @@ public class ClientBasicHandler_CONNECT extends BasicEventHandler {
         SimplePrinter.printNotice("Connected to server. Welcome to ratel!");
         User.INSTANCE.setId(Long.parseLong(data));
 
-        Map<String, Object> infos = new HashMap<>();
-        infos.put("version", SimpleClient.VERSION);
-        ChannelUtils.pushToServer(channel, BasicEventCode.CS_SET_INFO, Noson.reversal(infos));
+        String param=ProtoDataUtils.mapBuilder().put("version",SimpleClient.VERSION).toString();
+        ChannelUtils.pushToServer(channel, BasicEventCode.CS_SET_INFO, param);
     }
 }

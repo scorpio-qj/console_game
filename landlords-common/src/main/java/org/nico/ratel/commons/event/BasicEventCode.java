@@ -27,6 +27,12 @@ public enum BasicEventCode implements EventCode {
 
     CS_GET_GAME_LIST("CS_GET_GAME_LIST",1,"获取游戏列表",0),
 
+    CS_CHOOSE_GAME("CS_CHOOSE_GAME",1,"选择游戏",0),
+
+    CS_CREATE_ROOM("CS_CREATE_ROOM",1,"创建游戏房间",0),
+
+    CS_GET_ROOM_LIST("CS_CREATE_ROOM",1,"获取房间信息",0),
+
     //------------------------------------------------------------------------------------------------------//
 
     S_READ_IDLE_STATE_TIME_OUT("S_READ_IDLE_STATE_TIME_OUT",2,"读数据超时",0),
@@ -51,12 +57,16 @@ public enum BasicEventCode implements EventCode {
 
     SC_GAME_LIST("SC_GAME_LIST",3,"游戏列表",0),
 
+    SC_ROOM_LIST("SC_ROOM_LIST",3,"房间列表",0),
+
 
     //------------------------------------------------------------------------------------------------------//
 
     C_GAME_WATCH("C_GAME_WATCH",4,"观战处理",0),
 
     C_SHOW_OPTION_SETTING("C_SHOW_OPTION_SETTING",4,"所有设置选项",0),
+
+    C_ROOM_OPTIONS("C_ROOM_OPTIONS",4,"房间选项",0),
 
     ;
 

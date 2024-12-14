@@ -14,7 +14,7 @@ public abstract class BasicEventHandler {
         throw new RuntimeException("客户端需要实现具体消息处理逻辑");
     }
 
-    public void call(BasicActor actor,String data){
+    public void call(BasicActor actor,String param){
         throw new RuntimeException("客户端需要实现具体消息处理逻辑");
     }
 

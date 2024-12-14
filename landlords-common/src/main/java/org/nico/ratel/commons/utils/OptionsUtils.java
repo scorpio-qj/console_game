@@ -39,7 +39,7 @@ public class OptionsUtils {
 	 * 回退命令
 	 */
 	public static boolean CMD_BACK(String cmd){
-		return cmd.equalsIgnoreCase("back");
+		return cmd.equalsIgnoreCase("back")||cmd.equalsIgnoreCase("b");
 	}
 
 }

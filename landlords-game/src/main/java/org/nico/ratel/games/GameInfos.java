@@ -106,6 +106,11 @@ public enum GameInfos {
 
     }
 
+    public static GameInfos getInfoById(int gameId){
+        return idMap.get(gameId);
+    }
+
+
     public static BasicEventHandler getHandler(int gameId,String name){
 
         if(!gameHandlers.containsKey(gameId)){

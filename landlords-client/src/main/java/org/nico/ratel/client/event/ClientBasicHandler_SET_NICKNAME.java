@@ -9,6 +9,7 @@ import org.nico.ratel.commons.helper.MapHelper;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.commons.print.SimpleWriter;
 import org.nico.ratel.commons.utils.ChannelUtils;
+import org.nico.ratel.commons.utils.ProtoDataUtils;
 
 import java.util.Map;
 
@@ -26,7 +27,8 @@ public class ClientBasicHandler_SET_NICKNAME extends BasicEventHandler {
 
         //首次输入，data为null
         if (StringUtils.isNotBlank(data)) {
-            Map<String, Object> dataMap = MapHelper.parser(data);
+            Map dataMap = ProtoDataUtils.toObject(data,Map.class);
+            //Map<String, Object> dataMap = MapHelper.parser(data);
             if (dataMap.containsKey("invalidLength")) {
                 SimplePrinter.printNotice("Your nickname has invalid length: " + dataMap.get("invalidLength"));
             }
@@ -36,7 +38,7 @@ public class ClientBasicHandler_SET_NICKNAME extends BasicEventHandler {
 
         //名字非法，重新输入
         if (nickname.trim().length() > NICKNAME_MAX_LENGTH) {
-            String result = MapHelper.newInstance().put("invalidLength", nickname.trim().length()).json();
+            String result = ProtoDataUtils.mapBuilder().put("invalidLength",nickname.trim().length()).toString();
             call(channel, result);
         } else {
             ChannelUtils.pushToServer(channel, BasicEventCode.CS_SET_NICKNAME, nickname);

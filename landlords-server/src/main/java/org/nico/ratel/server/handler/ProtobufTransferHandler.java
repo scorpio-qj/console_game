@@ -58,10 +58,10 @@ public class ProtobufTransferHandler extends ChannelInboundHandlerAdapter {
 		if (msg instanceof ServerTransferDataProtoc) {
 			ServerTransferDataProtoc sd = (ServerTransferDataProtoc) msg;
 			EventCode eventCode=ServerEventNavigation.getEventCode(sd.getGameId(),sd.getCode());
+			BasicActor client = ServerContains.CLIENT_MAP.get(ServerContains.getClientId(ctx.channel()));
+			SimplePrinter.serverLog(client.getId() + " | " + client.getNickName() + " do:" + eventCode.getEventDesc());
 			//如果不为心跳包
 			if (eventCode!=BasicEventCode.CS_HEAD_BEAT){
-				BasicActor client = ServerContains.CLIENT_MAP.get(ServerContains.getClientId(ctx.channel()));
-				SimplePrinter.serverLog(client.getId() + " | " + client.getNickName() + " do:" + eventCode.getEventDesc());
 				ServerEventNavigation.getServerEventHandler(sd.getGameId(), sd.getCode()).call(client, sd.getData());
 			}
 		}

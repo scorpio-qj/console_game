@@ -9,7 +9,9 @@ import org.nico.ratel.commons.event.BasicEventHandler;
 import org.nico.ratel.commons.print.FormatPrinter;
 import org.nico.ratel.commons.print.SimplePrinter;
 import org.nico.ratel.commons.print.SimpleWriter;
+import org.nico.ratel.commons.utils.ChannelUtils;
 import org.nico.ratel.commons.utils.OptionsUtils;
+import org.nico.ratel.commons.utils.ProtoDataUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +27,7 @@ public class ClientBasicHandler_GAME_LIST extends BasicEventHandler {
     @Override
     public void call(Channel channel, String data) {
 
-        List<Map<String, Object>> gameList = Noson.convert(data, new NoType<List<Map<String, Object>>>() {});
+        List<Map<String, Object>> gameList = ProtoDataUtils.toObject(data,List.class);
         if (gameList != null && !gameList.isEmpty()) {
 
             String format = "#\t%s\t|\t%s\t|\t%s\t#\n";
@@ -50,7 +52,7 @@ public class ClientBasicHandler_GAME_LIST extends BasicEventHandler {
                     return;
                 }
 
-                //todo 发送选择游戏协议
+                ClientEventNavigation.getClientEventHandler(BasicEventCode.C_ROOM_OPTIONS.getEventName()).call(channel,ProtoDataUtils.toString(temp.get(choose)));
             }
 
         } else {

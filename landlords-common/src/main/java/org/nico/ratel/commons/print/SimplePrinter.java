@@ -1,5 +1,6 @@
 package org.nico.ratel.commons.print;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -22,18 +23,22 @@ public class SimplePrinter {
 		System.out.println(msg);
 	}
 
+	public static void printNotice(String msg,Object ...param){
+		msg=msg.replaceAll("\\{}","%s")+"\n";
+		System.out.printf(msg,param);
+	}
+
 	public static void printTranslate(String key, Object... args) {
 		System.out.println(I18nHelper.translate(key, args));
 	}
 
-	public static void printNotice(String msgKey, String locale) {
-		//TODO : read locale
-		Map<String, Map<String, String>> map = new HashMap<>();
-		map.put("english", new HashMap<>());
-		map.get("eng").put("caterpillar", "caterpillar's message!!");
-
-		System.out.println(map.get(locale).get(msgKey));
-	}
+	//public static void printNotice(String msgKey, String locale) {
+	//	//TODO : read locale
+	//	Map<String, Map<String, String>> map = new HashMap<>();
+	//	map.put("english", new HashMap<>());
+	//	map.get("eng").put("caterpillar", "caterpillar's message!!");
+	//	System.out.println(map.get(locale).get(msgKey));
+	//}
 
 	public static void serverLog(String msg) {
 		System.out.println(FORMAT.format(new Date()) + "-> " + msg);
