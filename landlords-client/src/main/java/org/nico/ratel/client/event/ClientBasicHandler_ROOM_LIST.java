@@ -24,11 +24,11 @@ public class ClientBasicHandler_ROOM_LIST extends BasicEventHandler {
         RoomListData roomListData= ProtoDataUtils.toObject(data, RoomListData.class);
         if (roomListData != null) {
 
-            String format = "#\t%s\t|\t%s\t|\t%s\t|\t%s\t#\n";
-            FormatPrinter.printNotice(format, "NUM", "NAME", "SIZE","TYPE");
+            String format = "#\t%s\t|\t%s\t|\t%s\t|\t%s\t|\t%s\t#\n";
+            FormatPrinter.printNotice(format, "NUM","ROOMID","NAME", "SIZE","TYPE");
             for(int i=1;i<=roomListData.getRooms().size();i++){
                 Map<String,String> game= roomListData.getRooms().get(i-1);
-                FormatPrinter.printNotice(format, i, game.get("roomName"), game.get("roomSize"),game.get("battleType"));
+                FormatPrinter.printNotice(format, i, game.get("roomId"),game.get("roomName"), game.get("roomSize"),game.get("battleType"));
             }
             String param= ProtoDataUtils.mapBuilder().put("gameId",roomListData.getGameId()).put("name",roomListData.getGameName()).toString();
             SimplePrinter.printNotice("");

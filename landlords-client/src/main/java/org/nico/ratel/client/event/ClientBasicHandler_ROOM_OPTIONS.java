@@ -43,7 +43,9 @@ public class ClientBasicHandler_ROOM_OPTIONS extends BasicEventHandler {
                 }else if(choose==OptionsUtils.OPTIONS_NUMBER.TWO_2) {
                     ChannelUtils.pushToServer(channel,BasicEventCode.CS_GET_ROOM_LIST,ProtoDataUtils.toString(gameId));
                 }else if(choose==OptionsUtils.OPTIONS_NUMBER.THREE_3) {
-
+                    String roomId = SimpleWriter.write(User.INSTANCE.getNickname(), "");
+                    String param= ProtoDataUtils.mapBuilder().put("gameId",gameId).put("roomId",roomId).toString();
+                    ChannelUtils.pushToServer(channel,BasicEventCode.CS_JOIN_ROOM,ProtoDataUtils.toString(param));
                 }
 
             }

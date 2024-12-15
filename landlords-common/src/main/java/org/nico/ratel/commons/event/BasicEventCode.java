@@ -31,7 +31,11 @@ public enum BasicEventCode implements EventCode {
 
     CS_CREATE_ROOM("CS_CREATE_ROOM",1,"创建游戏房间",0),
 
-    CS_GET_ROOM_LIST("CS_CREATE_ROOM",1,"获取房间信息",0),
+    CS_GET_ROOM_LIST("CS_GET_ROOM_LIST",1,"获取房间信息",0),
+
+    CS_JOIN_ROOM("CS_JOIN_ROOM",1,"加入房间",0),
+
+
 
     //------------------------------------------------------------------------------------------------------//
 
@@ -58,6 +62,8 @@ public enum BasicEventCode implements EventCode {
     SC_GAME_LIST("SC_GAME_LIST",3,"游戏列表",0),
 
     SC_ROOM_LIST("SC_ROOM_LIST",3,"房间列表",0),
+
+    SC_ROOM_NOT_EXIST("SC_ROOM_NOT_EXIST",3,"房间不存在",0),
 
 
     //------------------------------------------------------------------------------------------------------//
